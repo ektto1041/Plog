@@ -4,21 +4,16 @@ import React, {useEffect, useState} from 'react';
 import Presentation from './presentation';
 
 const SideMenuContainer = () => {
-  const [menuItemList, setMenuItemList] = useState([]);
+  const [menuList, setMenuList] = useState([]);
 
-  // useEffect(() => {
-  //   axios.get('/getAllSideMenu')
-  //   .then(r => {
-  //     const newArr = Array.from(r.data, item => item.NAME);
+  useEffect(() => {
 
-  //     setMenuItemList(newArr);
-  //   })
-  // }, []);
+  }, []);
 
   return (
     <>
       <Presentation
-        menuItemList = {menuItemList}
+        menuList  = {menuList}
       />
     </>
   );

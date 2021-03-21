@@ -29,9 +29,10 @@ const Wrapper = styled.div`
 
 const MenuItem = ({
   text,
+  onClick,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       {text}
     </Wrapper>
   );

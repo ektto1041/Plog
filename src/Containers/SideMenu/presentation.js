@@ -17,15 +17,16 @@ const Wrapper = styled.div`
 
   border-right: .5px solid gray;
   box-shadow: 0 0 10px gray;
+  z-index: -1;
 `;
 
 const SideMenuPresentation = ({
-  menuItemList,
+  menuList,
 }) => {
   return (
     <Wrapper>
-      {menuItemList.map(menuItem => (
-        <SideMenuItem text={menuItem}/>
+      {menuList.map((item, idx) => (
+        <SideMenuItem key={idx} text={item}/>
       ))}
     </Wrapper>
   );

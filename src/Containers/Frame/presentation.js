@@ -6,11 +6,21 @@ import Body from '../Body';
 
 const Wrapper = styled.div``;
 
-const FramePresentation = () => {
+const FramePresentation = ({
+  path,
+  userList,
+  menuList,
+  history,
+}) => {
   return (
     <Wrapper>
-      <Header />
-      <Body />
+      <Header
+        path={path}
+        userList={userList}
+        menuList={menuList}
+        history={history}
+      />
+      <Body history={history}/>
     </Wrapper>
   );
 };

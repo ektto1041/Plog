@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   margin: 0 auto;
   width: ${dim.contentMinWidth}px;
   min-width: ${dim.contentMinWidth}px;
+  height: 5000px;
 
   box-shadow: 0 0 10px gray; 
 

@@ -5,6 +5,7 @@ import dim from '../../Resources/Dimensions';
 import col from '../../Resources/Colors';
 
 import MenuItem from '../../Components/MenuItem';
+import Dropdown from '../../Components/Dropdown';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -17,6 +18,8 @@ const Wrapper = styled.div`
 `;
 
   const MainHeader = styled.div`
+    display: flex;
+    align-items: center;
     height: ${dim.headerHeight / 2}px;
     background: white;
   `;
@@ -25,6 +28,7 @@ const Wrapper = styled.div`
       height: ${dim.headerHeight / 2}px;
 
       padding-left: ${dim.headerTitlePadding}px;
+      margin-right: ${dim.headerTitlePadding}px;
 
       // TEXT
       line-height: ${dim.headerHeight / 2}px;
@@ -43,16 +47,22 @@ const Wrapper = styled.div`
     background-color: ${col.carnivalGlass};
   `;
 
-const HeaderPresentation = () => {
+const HeaderPresentation = ({
+  userList,
+  dropdownText,
+  dropdownDataSet,
+  menuList,
+}) => {
   return (
     <Wrapper>
       <MainHeader>
         <Title>블로그</Title>
+        <Dropdown dataset={dropdownDataSet} text={dropdownText}/>
       </MainHeader>
       <NavMenu>
-        <MenuItem text="Programming"/>
-        <MenuItem text="파파퐈"/>
-        <MenuItem text="영통구대족장"/>
+        {/* {menuList.map((item, idx) => (
+          <MenuItem key={idx} text={item} onClick={() => {}}/>
+        ))} */}
       </NavMenu>
     </Wrapper>
   );
