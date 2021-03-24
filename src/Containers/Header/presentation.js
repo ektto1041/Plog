@@ -73,16 +73,16 @@ const Wrapper = styled.div`
     `;
 
 const HeaderPresentation = ({
-  headerMenuList,
+  menuList,
 }) => {
   return (
     <Wrapper>
       <Header>
         <Logo> <Title>타이틀</Title> </Logo>
         <NavMenu>
-          <NavMenuItem>메뉴1</NavMenuItem>
-          <NavMenuItem>더긴메뉴2</NavMenuItem>
-          <NavMenuItem>메뉴3</NavMenuItem>
+          {menuList.map((item, idx) => (
+            <NavMenuItem key={idx} >{item.NAME}</NavMenuItem>
+          ))}
         </NavMenu>
       </Header>
     </Wrapper>

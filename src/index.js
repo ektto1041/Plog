@@ -2,17 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Frame from './Containers/Frame';
-import {BrowserRouter, Redirect, Route} from 'react-router-dom'
+import {BrowserRouter, Route} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
-import Home from './Containers/Home'
 
 ReactDOM.render(
   <BrowserRouter>
-    {/* <Route exact path='/'><Redirect to="/_/_/_/_" /></Route> */}
-    <Route exact path="/" component={Frame} />
-    {/* <Route exact path="/:parentMenuId" component={Frame} /> */}
-    {/* <Route exact path="/:parentMenuId/:childMenuId" component={Frame} /> */}
-    {/* <Route exact path="/:parentMenuId/:childMenuId/:postId" component={Frame} /> */}
+    <Route path="/" component={Frame} />
   </BrowserRouter>,
   document.getElementById('root')
 );

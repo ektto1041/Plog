@@ -6,46 +6,31 @@ const FrameContainer = ({
   match,
   history,
 }) => {
-  const [path, setPath] = useState({});
-  const [userList, setUserList] = useState([]);
-  const [menuList, setMenuList] = useState([]);
+  const [menuList, setMenuList] = useState([]); // 모든 메뉴 리스트
 
-  // useEffect(() => {
-  //   // Url 데이터를 path 에 저장
-  //   const { parentMenuId, childMenuId, postId } = match.params;
-  //   setPath({parentMenuId, childMenuId, postId});
+  // 웹 실행 시 가장 먼저 실행되는 로직
+  useEffect(() => {
+    /**
+     *  api Function
+     */
+    const getMenus = async () => {
+      const response = await axios.get(`/menus`);
 
-  //   const getMenus = async () => {
-  //     const response = await axios.get(`/menus`);
+      try {
+        if(response.statusText === 'OK') {
+          setMenuList(response.data);
+        } else throw new Error(`API Error(${response.status})`);
+      } catch(e) {
+        console.error(e);
+      }
+    };
 
-  //     try {
-  //       if(response.statusText === 'OK') {
-  //         const newMenuList = response.data.filter(item => item.LEVEL === 0);
-
-  //         for(const parent of newMenuList) {
-  //           const childMenuList = [];
-
-  //           for(const child of response.data) {
-  //             if(child.PRNT_ID === parent.MENU_ID) {
-  //               childMenuList.push(child);
-  //             }
-  //           }
-
-  //           parent.childMenuList = childMenuList;
-  //         }
-          
-  //         setMenuList(newMenuList);
-  //       } else {
-  //         throw new Error(`Request Error (${response.status})`);
-  //       }
-  //     } catch(e) {
-  //       console.error(e);
-  //     }
-  //   }
-
-  //   // 모든 메뉴 정보 가져오기
-  //   getMenus();
-  // }, [match]);
+    /**
+     *  코드는 아래부터 시작
+     */
+    // 모든 메뉴 가져오기
+    getMenus();
+  }, []);
 
   return (
     <>
