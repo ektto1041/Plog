@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Home = () => {
+import Presentation from './presentation';
+
+const HomeContainer = () => {
   return (
-    <div>홈입니다.</div>
+    <>
+      <Presentation />
+    </>
   );
 };
 
-export default Home;
+export default HomeContainer;

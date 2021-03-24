@@ -10,6 +10,7 @@ const dim = {
   headerNavMenuItemMargin: 20,
   headerNavMenuItemPadding: 10,
   headerNavMenuItemFontSize: 1.35,
+  headerNavMenuItemBorderWidth: 5,
 
   bodyMargin: 5,
 }

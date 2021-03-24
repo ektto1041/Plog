@@ -7,7 +7,9 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Route path="/" component={Frame} />
+    <Route exact path="/" component={Frame} />
+    <Route exact path="/:menuId" component={Frame} />
+    <Route exact path="/:menuId/:postId" component={Frame} />
   </BrowserRouter>,
   document.getElementById('root')
 );

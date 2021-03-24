@@ -62,17 +62,19 @@ const Wrapper = styled.div`
       user-select: none;
       color: ${col.siesta};
       
+      border-bottom: ${p => p.id === p.currentMenuId ? `${dim.headerNavMenuItemBorderWidth}px solid ${col.siesta}` : `0px` };
       box-sizing: border-box;
 
       cursor: pointer;
 
       transition: .1s all ease;
       &:hover {
-        border-bottom: 5px solid ${col.siesta};
+        border-bottom: ${dim.headerNavMenuItemBorderWidth}px solid ${col.siesta};
       }
     `;
 
 const HeaderPresentation = ({
+  currentMenuId,
   menuList,
 }) => {
   return (
@@ -80,8 +82,12 @@ const HeaderPresentation = ({
       <Header>
         <Logo> <Title>타이틀</Title> </Logo>
         <NavMenu>
-          {menuList.map((item, idx) => (
-            <NavMenuItem key={idx} >{item.NAME}</NavMenuItem>
+          {menuList.map((item) => (
+            <NavMenuItem
+              key={item.MENU_ID}
+              id={item.MENU_ID}
+              currentMenuId={currentMenuId}
+            >{item.NAME}</NavMenuItem>
           ))}
         </NavMenu>
       </Header>
