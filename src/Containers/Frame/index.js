@@ -9,8 +9,10 @@ const FrameContainer = ({
   const [path, setPath] = useState({}); // 현재 url의 parameters
   const [menuList, setMenuList] = useState([]); // 모든 메뉴 리스트
 
-  // 웹 실행 시 가장 먼저 실행되는 로직
+  // 웹 실행 시 가장 먼저, 한 번만 실행되는 로직
+  // Routing이 달라지면 실행됨
   useEffect(() => {
+    console.log(2);
     /**
      *  api Function
      */
@@ -25,6 +27,20 @@ const FrameContainer = ({
         console.error(e);
       }
     };
+
+    /**
+     *  코드는 아래부터 시작
+     */
+    // 모든 메뉴 가져오기
+    getMenus();
+  }, []);
+
+  // url이 바뀔 때마다 실행 될 로직
+  useEffect(() => {
+    /**
+     *  api Function
+     */
+
 
     /**
      *  코드는 아래부터 시작
@@ -50,9 +66,6 @@ const FrameContainer = ({
 
 
     }
-
-    // 모든 메뉴 가져오기
-    getMenus();
   }, [match]);
 
   return (
