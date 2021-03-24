@@ -15,11 +15,20 @@ const HeaderContainer = ({
     } else setCurrentMenuId(-1);
   }, [path]);
 
+  // 헤더에서 버튼 눌렀을 때 처리
+  const handleClickHeaderButton = useCallback((menuId) => {
+    if(menuId === -1)
+      history.push(`/`);
+    else
+      history.push(`/${menuId}`);
+  }, [history]);
+
   return (
     <>
       <Presentation
         currentMenuId={currentMenuId}
         menuList={menuList}
+        handleClickHeaderButton={handleClickHeaderButton}
       />
     </>
   );

@@ -76,17 +76,19 @@ const Wrapper = styled.div`
 const HeaderPresentation = ({
   currentMenuId,
   menuList,
+  handleClickHeaderButton
 }) => {
   return (
     <Wrapper>
       <Header>
-        <Logo> <Title>타이틀</Title> </Logo>
+        <Logo onClick={() => handleClickHeaderButton(-1)} > <Title>타이틀</Title> </Logo>
         <NavMenu>
           {menuList.map((item) => (
             <NavMenuItem
               key={item.MENU_ID}
               id={item.MENU_ID}
               currentMenuId={currentMenuId}
+              onClick={() => handleClickHeaderButton(item.MENU_ID)}
             >{item.NAME}</NavMenuItem>
           ))}
         </NavMenu>
