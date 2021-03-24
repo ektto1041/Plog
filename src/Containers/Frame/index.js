@@ -10,84 +10,46 @@ const FrameContainer = ({
   const [userList, setUserList] = useState([]);
   const [menuList, setMenuList] = useState([]);
 
-  useEffect(() => {
-    // Url 데이터를 path 에 저장
-    const { userId, postId } = match.params;
+  // useEffect(() => {
+  //   // Url 데이터를 path 에 저장
+  //   const { parentMenuId, childMenuId, postId } = match.params;
+  //   setPath({parentMenuId, childMenuId, postId});
 
-    setPath({userId, postId});
+  //   const getMenus = async () => {
+  //     const response = await axios.get(`/menus`);
 
-    // User의 메뉴 가져오기
-    const getMenusByUserId = async (userId) => {
-      try {
-        const response = await axios.get(`/menus?userId=${userId}`);
+  //     try {
+  //       if(response.statusText === 'OK') {
+  //         const newMenuList = response.data.filter(item => item.LEVEL === 0);
 
-        if(response.statusText === 'OK') {
-          const parentMenus = response.data.filter(item => item.LEVEL === 0);
+  //         for(const parent of newMenuList) {
+  //           const childMenuList = [];
 
-          for(const parentMenu of parentMenus) {
-            const childMenus = [];
+  //           for(const child of response.data) {
+  //             if(child.PRNT_ID === parent.MENU_ID) {
+  //               childMenuList.push(child);
+  //             }
+  //           }
 
-            for(const childMenu of response.data) {
-              if(childMenu.PRNT_ID && childMenu.PRNT_ID !== -1) {
-                childMenus.push(childMenu);
-              }
-            }
+  //           parent.childMenuList = childMenuList;
+  //         }
+          
+  //         setMenuList(newMenuList);
+  //       } else {
+  //         throw new Error(`Request Error (${response.status})`);
+  //       }
+  //     } catch(e) {
+  //       console.error(e);
+  //     }
+  //   }
 
-            parentMenu.childMenus = childMenus;
-          }
-
-          setMenuList(parentMenus);
-        } else {
-          throw new Error(`Request Error (${response.status})`);
-        }
-      } catch(e) {
-        console.log(e);
-      }
-    }
-
-    // 헤더에 표시될 유저 목록 가져오기
-    const getUserList = async () => {
-      try {
-        const response = await axios.get('/users');
-        if (response.statusText === 'OK') {
-          setUserList(response.data);
-
-          console.log(response.data);
-        } else {
-          throw new Error(`Request Error (${response.status})`);
-        }
-      } catch (e) {
-        console.log(e);
-      }
-    }
-    
-    // url에 표시된 userId의 Default Post 가져오기
-    const getPostByUserId = async (userId) => {
-      const response = await axios.get(`/post?userId=${userId}`);
-    }
-
-    // 헤더에 표시될 유저 목록 가져오기
-    getUserList();
-
-    // 선택된 유저의 메뉴 가져오기
-    getMenusByUserId(userId);
-
-    if (!postId) {
-      // 데이터 로딩 필요
-      getPostByUserId(userId);
-    } else {
-      // post를 로딩하는 로직 실행
-
-    }
-
-    // url에 표시된 userId의 메뉴 가져오기
-  }, [match]);
+  //   // 모든 메뉴 정보 가져오기
+  //   getMenus();
+  // }, [match]);
 
   return (
     <>
       <Presentation
-        path = {path}
-        userList = {userList}
         menuList = {menuList}
         history = {history}
       />

@@ -3,28 +3,26 @@ import styled from 'styled-components';
 
 import dim from '../../Resources/Dimensions';
 
-import SideMenu from '../SideMenu';
-import Content from '../Content';
-
 const Wrapper = styled.div`
-  display: flex;
   width: 100%;
-
-  margin-top: ${dim.headerHeight + dim.sideMenuMargin}px;
-  margin-bottom: ${dim.sideMenuMargin}px;
 `;
 
-  const Blank = styled.div`
-    width: ${dim.sideMenuWidth + dim.sideMenuMargin}px;
-    min-width: ${dim.sideMenuWidth + dim.sideMenuMargin}px;
-  `;
+const Body = styled.div`
+  margin: 0 auto;
+  margin-top: ${dim.headerHeight + dim.bodyMargin}px;
+  width: ${dim.displayWidth}px;
+  
+  height: 500px;
+
+  box-shadow: 0 0 10px gray; 
+
+  background: white;
+`;
 
 const BodyPresentation = () => {
   return (
     <Wrapper>
-      <SideMenu />
-      <Blank />
-      <Content />
+      <Body />
     </Wrapper>
   );
 };

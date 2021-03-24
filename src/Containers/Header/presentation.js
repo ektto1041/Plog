@@ -12,58 +12,79 @@ const Wrapper = styled.div`
   top: 0;
   left: 0;
   right: 0;
-  height: ${dim.headerHeight}px;
+  
+  background: white;
 
   box-shadow: 0 0 10px gray; 
 `;
 
-  const MainHeader = styled.div`
+  const Header = styled.div`
     display: flex;
     align-items: center;
-    height: ${dim.headerHeight / 2}px;
-    background: white;
+    width: ${dim.displayWidth}px;
+    height: ${dim.headerHeight}px;
+    margin: 0 auto;
   `;
 
-    const Title = styled.span`
-      height: ${dim.headerHeight / 2}px;
+    const Logo = styled.div`
+      width: ${dim.headerLogoWidth}px;
+      height: ${dim.headerLogoHeight}px;
+      margin-left: ${dim.headerLogoMargin}px;
+      margin-right: ${dim.headerLogoMargin}px;
+    `;
 
-      padding-left: ${dim.headerTitlePadding}px;
-      margin-right: ${dim.headerTitlePadding}px;
+    const Title = styled.div`
+      width: 100%;
+      height: ${dim.headerLogoHeight}px;
 
-      // TEXT
-      line-height: ${dim.headerHeight / 2}px;
+      line-height: ${dim.headerLogoHeight}px;
       user-select: none;
       font-size: ${dim.headerTitleFontSize}em;
       font-weight: bold;
+      text-align: center;
 
       cursor: pointer;
     `;
 
   const NavMenu = styled.div`
     display: flex;
-
-    height: ${dim.headerHeight / 2}px;
-    
-    background-color: ${col.carnivalGlass};
+    align-items: center;
   `;
 
+    const NavMenuItem = styled.div`
+      height: ${dim.headerNavMenuHeight}px;
+      margin-right: ${dim.headerNavMenuItemMargin}px;
+      padding: 0 ${dim.headerNavMenuItemPadding}px;
+
+      line-height: ${dim.headerNavMenuHeight}px;
+      font-size: ${dim.headerNavMenuItemFontSize}em;
+      font-weight: bold;
+      user-select: none;
+      color: ${col.siesta};
+      
+      box-sizing: border-box;
+
+      cursor: pointer;
+
+      transition: .1s all ease;
+      &:hover {
+        border-bottom: 5px solid ${col.siesta};
+      }
+    `;
+
 const HeaderPresentation = ({
-  userList,
-  dropdownText,
-  dropdownDataSet,
-  menuList,
+  headerMenuList,
 }) => {
   return (
     <Wrapper>
-      <MainHeader>
-        <Title>블로그</Title>
-        <Dropdown dataset={dropdownDataSet} text={dropdownText}/>
-      </MainHeader>
-      <NavMenu>
-        {/* {menuList.map((item, idx) => (
-          <MenuItem key={idx} text={item} onClick={() => {}}/>
-        ))} */}
-      </NavMenu>
+      <Header>
+        <Logo> <Title>타이틀</Title> </Logo>
+        <NavMenu>
+          <NavMenuItem>메뉴1</NavMenuItem>
+          <NavMenuItem>더긴메뉴2</NavMenuItem>
+          <NavMenuItem>메뉴3</NavMenuItem>
+        </NavMenu>
+      </Header>
     </Wrapper>
   );
 };

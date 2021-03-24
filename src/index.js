@@ -9,9 +9,10 @@ import Home from './Containers/Home'
 ReactDOM.render(
   <BrowserRouter>
     {/* <Route exact path='/'><Redirect to="/_/_/_/_" /></Route> */}
-    <Route exact path="/" component={Home}><Redirect to="/1" /> </Route>
-    <Route exact path="/:userId" component={Frame} />
-    <Route exact path='/:userId/:postId' component={Frame} />
+    <Route exact path="/" component={Frame} />
+    {/* <Route exact path="/:parentMenuId" component={Frame} /> */}
+    {/* <Route exact path="/:parentMenuId/:childMenuId" component={Frame} /> */}
+    {/* <Route exact path="/:parentMenuId/:childMenuId/:postId" component={Frame} /> */}
   </BrowserRouter>,
   document.getElementById('root')
 );

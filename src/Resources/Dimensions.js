@@ -1,17 +1,17 @@
 const dim = {
-  headerHeight: 110,
-  headerTitlePadding: 50,
+  displayWidth: 1200,
+
+  headerHeight: 60,
+  headerLogoWidth: 110,
+  headerLogoHeight: 30,
+  headerLogoMargin: 20,
   headerTitleFontSize: 1.35,
-  menuItemWidth: 150,
+  headerNavMenuHeight: 50,
+  headerNavMenuItemMargin: 20,
+  headerNavMenuItemPadding: 10,
+  headerNavMenuItemFontSize: 1.35,
 
-  sideMenuWidth: 300,
-  sideMenuItemHeight: 25,
-  sideMenuMargin: 5,
-  sideMenuPadding: 20,
-  sideMenuItemMargin: 5,
-  sideMenuItemPadding: 20,
-
-  contentMinWidth: 1200,
+  bodyMargin: 5,
 }
 
 export default dim;
