@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Home from '../Home';
+import Board from '../Board';
+
 import dim from '../../Resources/Dimensions';
 
 const Wrapper = styled.div`
@@ -19,10 +22,15 @@ const Body = styled.div`
   background: white;
 `;
 
-const BodyPresentation = () => {
+const BodyPresentation = ({
+  path,
+}) => {
   return (
     <Wrapper>
-      <Body />
+      <Body>
+        {path.menuId === -1 ? (<Home />) :
+        path.menuId === 1 ? (<Board />) : (<></>)}
+      </Body>
     </Wrapper>
   );
 };

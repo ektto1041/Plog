@@ -1,10 +1,14 @@
 import React from 'react';
 import Presentation from './presentation';
 
-const BodyContainer = () => {
+const BodyContainer = ({
+  path,
+}) => {
   return (
     <>
-      <Presentation />
+      <Presentation
+        path={path}
+      />
     </>
   );
 };

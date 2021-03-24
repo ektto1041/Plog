@@ -18,7 +18,10 @@ const FramePresentation = ({
         menuList={menuList}
         history={history}
       />
-      <Body history={history}/>
+      <Body
+        path={path}
+        history={history}
+      />
     </Wrapper>
   );
 };
