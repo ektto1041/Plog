@@ -23,12 +23,14 @@ const Body = styled.div`
 const BodyPresentation = ({
   path,
 }) => {
+  console.log(path);
+
   return (
     <Wrapper>
       <Body>
         {path.menuId === -1 ? (<Home />) :
-        path.menuId === 1 ? (<Board menuId={path.menuId} />) :
-        path.menuId === 2 ? (<></>) : (<></>)}
+        path.menuType === "BOARD" ? (<Board menuId={path.menuId} />) :
+        path.menyType === "SINGLE" ? (<></>) : (<></>)}
       </Body>
     </Wrapper>
   );

@@ -40,32 +40,38 @@ const FrameContainer = ({
     /**
      *  api Function
      */
+    const getMenuType = async () => {
+      const response = await axios.get(`/menuType?menuId=${menuId}`);
 
-
+      try {
+        if(response.statusText === 'OK') {
+          setPath({
+            menuId,
+            postId,
+            menuType: response.data[0].TYPE
+          });
+        } else throw new Error(`API Error(${response.status})`);
+      } catch(e) {
+        console.error(e);
+      }
+    }
 
     /**
      *  코드는 아래부터 시작
      */
-    const { menuId, postId } = match.params;
+    const menuId = match.params.menuId ? parseInt(match.params.menuId) : -1;
+    const postId = match.params.postId ? parseInt(match.params.postId) : -1;
 
-    // 현재 url의 parameter를 path state에 담음
-    setPath({
-      menuId: menuId ? parseInt(match.params.menuId) : -1,
-      postId: postId ? parseInt(match.params.postId) : -1,
-    });
-
-    if(!menuId) {
-      // url 에 어떤 Parameter 도 들어오지 않았을 때의 처리
-      
-
-    } else if(!postId) {
-      // url 에 menu Id 만 들어왔을 때의 처리
-
-
+    // path 를 만듦
+    // menuId 만 들어왔으면 menuType을 가져옴
+    if(menuId !== -1 && postId === -1) {
+      getMenuType();
     } else {
-      // url 에 모든 Parameter 가 들어왔을 때의 처리
-
-
+      // 현재 url의 parameter를 path state에 담음
+      setPath({
+        menuId,
+        postId,
+      });
     }
   }, [match]);
 
