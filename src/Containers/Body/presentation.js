@@ -15,8 +15,6 @@ const Body = styled.div`
   margin-top: ${dim.headerHeight + dim.bodyMargin}px;
   width: ${dim.displayWidth}px;
   
-  height: 500px;
-
   box-shadow: 0 0 10px gray; 
 
   background: white;

@@ -13,6 +13,18 @@ const dim = {
   headerNavMenuItemBorderWidth: 5,
 
   bodyMargin: 5,
+
+  boardPadding: 5,
+  boardItemHeight: 300,
+  boardItemMargin: 5,
+  boardItemPadding: 50,
+  boardItemTitleHeight: 50,
+  boardItemTitleFontSize: 1.35,
+  boardItemInformationHeight: 20,
+  boardItemInformationFontSize: 0.9,
+  boardItemContentHeight: 130,
+  boardItemContentFontSize: 1,
+  boardItemImageWidth: 300,
 }
 
 export default dim;

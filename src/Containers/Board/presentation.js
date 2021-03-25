@@ -1,13 +1,19 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div``;
+import BoardItem from '../../Components/BoardItem';
+
+import dim from '../../Resources/Dimensions';
+
+const Wrapper = styled.div`
+  padding: ${dim.boardPadding}px;
+`;
 
 const BoardPresentation = () => {
   return (
     <Wrapper>
-      <h1>이 곳은 BOARD 입니다.</h1>
-      <h2>알맞게 꾸며주세요.</h2>
+      <BoardItem />
+      <BoardItem />
     </Wrapper>
   );
 };
