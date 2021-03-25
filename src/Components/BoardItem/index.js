@@ -8,12 +8,11 @@ const Wrapper = styled.div`
   display: flex;
 
   width: ${dim.displayWidth - dim.boardPadding * 2}px;
-  height: ${dim.boardItemHeight}px;
+  height: ${dim.boardItemHeight - dim.boardItemPadding * 2}px;
   margin-bottom: ${dim.boardItemMargin}px;
   padding: ${dim.boardItemPadding}px 0;
-  
-  box-sizing: border-box;
-  border: 1px solid gray;
+
+  border-bottom: .5px solid gray;
 `;
 
 const Text = styled.div`
@@ -28,6 +27,7 @@ const Title = styled.div`
 
   line-height: ${dim.boardItemTitleHeight}px;
   font-size: ${dim.boardItemTitleFontSize}em;
+  user-select: none;
   font-weight: 500;
 `;
 
@@ -37,6 +37,7 @@ const Information = styled.div`
 
   line-height: ${dim.boardItemInformationHeight}px;
   font-size: ${dim.boardItemInformationFontSize}em;
+  user-select: none;
 `;
 
 const Content = styled.div`
@@ -45,6 +46,7 @@ const Content = styled.div`
 
   line-height: ${dim.boardItemContentHeight}px;
   font-size: ${dim.boardItemContentFontSize}em;
+  user-select: none;
 `;
 
 const Image = styled.img`
@@ -56,13 +58,17 @@ const Image = styled.img`
 `;
 
 
-const BoardItem = () => {
+const BoardItem = ({
+  title,
+  updDate,
+  content,
+}) => {
   return (
     <Wrapper>
       <Text>
-        <Title>포스팅 제목</Title>
-        <Information>1996-06-12</Information>
-        <Content>가나다 라마바사 아자 차카타파 하하 박상연 영통구 대족장 예천</Content>
+        <Title>{title}</Title>
+        <Information>{updDate}</Information>
+        <Content>{content}</Content>
       </Text>
       <Image src={testImage} alt="" />
     </Wrapper>

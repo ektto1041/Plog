@@ -9,11 +9,19 @@ const Wrapper = styled.div`
   padding: ${dim.boardPadding}px;
 `;
 
-const BoardPresentation = () => {
+const BoardPresentation = ({
+  postList,
+}) => {
   return (
     <Wrapper>
-      <BoardItem />
-      <BoardItem />
+      {postList.map(item => (
+        <BoardItem
+          key={item.POST_ID}
+          title={item.TITLE}
+          updDate={item.UPD_DATE}
+          content={item.CONTENT}
+        />
+      ))}
     </Wrapper>
   );
 };

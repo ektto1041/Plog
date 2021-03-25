@@ -27,7 +27,8 @@ const BodyPresentation = ({
     <Wrapper>
       <Body>
         {path.menuId === -1 ? (<Home />) :
-        path.menuId === 1 ? (<Board />) : (<></>)}
+        path.menuId === 1 ? (<Board menuId={path.menuId} />) :
+        path.menuId === 2 ? (<></>) : (<></>)}
       </Body>
     </Wrapper>
   );
