@@ -78,11 +78,13 @@ const Pagination = ({
 
   return (
     <PaginationStyle>
-      {isBeforeButton ? (<Button shape="round" radius="15px" style={{ margin: "0 5px" }} >{"<"}</Button>) : null}
+      {isBeforeButton ? (<Button shape="round" radius="15px" onClick={() => onClickListener(parseInt(buttonList[0].text)-1)} style={{ margin: "0 5px" }} >{"<"}</Button>) : null}
       {buttonList.map(item => (
-        <Button key={item.text} shape="round" radius="15px" onClick={item.onClick} style={{ margin: "0 5px"}}>{item.text}</Button>
+        item.text === nowPage ?
+        <Button key={item.text} shape="round" radius="15px" onClick={item.onClick} style={{ margin: "0 5px"}}>{item.text}</Button> :
+        <Button key={item.text} shape="round" radius="15px" bgColor="white" onClick={item.onClick} style={{ margin: "0 5px", border: "1px solid black"}}>{item.text}</Button>
       ))}
-      {isAfterButton ? (<Button shape="round" radius="15px" style={{ margin: "0 5px" }} >{">"}</Button>) : null}
+      {isAfterButton ? (<Button shape="round" radius="15px" onClick={() => onClickListener(parseInt(buttonList[buttonList.length-1].text)+1)} style={{ margin: "0 5px" }} >{">"}</Button>) : null}
     </PaginationStyle>
   );
 }

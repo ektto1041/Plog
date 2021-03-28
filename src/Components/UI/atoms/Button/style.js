@@ -9,6 +9,7 @@ const Css = css`
   background: ${prop("bgColor", col.siesta)};
   border: 0;
   border-radius: ${ifProp({ shape: "round" }, prop("radius", "0"), 0)};
+  font-weight: bold;
   outline: none;
   cursor: pointer;
   // color: ${props => props.theme.basic.color.main};
