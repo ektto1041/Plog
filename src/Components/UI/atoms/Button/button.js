@@ -1,9 +1,9 @@
 import React from 'react';
 import { ButtonStyle } from './style';
 
-const Button = () => {
+const Button = (props) => {
   return (
-    <ButtonStyle></ButtonStyle>
+    <ButtonStyle {...props}>{props.children}</ButtonStyle>
   )
 }
 
