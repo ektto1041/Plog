@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 
 const BoardPresentation = ({
   postList,
+  nowPage,
   onClickPagination,
 }) => {
   return (
@@ -24,7 +25,7 @@ const BoardPresentation = ({
           content={item.CONTENT}
         />
       ))}
-      <Pagination nowPage={5} viewCount={10} buttonCount={7} dataCount={100} onClickListener={onClickPagination} />
+      <Pagination nowPage={nowPage} viewCount={10} buttonCount={5} dataCount={100} onClickListener={onClickPagination} />
     </Wrapper>
   );
 };

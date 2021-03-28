@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import queryString from 'query-string';
 import Presentation from './presentation'
 
 const FrameContainer = ({
@@ -48,6 +49,7 @@ const FrameContainer = ({
           setPath({
             menuId,
             postId,
+            page,
             menuType: response.data[0].TYPE
           });
         } else throw new Error(`API Error(${response.status})`);
@@ -59,13 +61,18 @@ const FrameContainer = ({
     /**
      *  코드는 아래부터 시작
      */
+    console.log(history);
     const menuId = match.params.menuId ? parseInt(match.params.menuId) : -1;
     const postId = match.params.postId ? parseInt(match.params.postId) : -1;
+    const qs = queryString.parse(history.location.search);
+    const page = qs.page ? parseInt(qs.page) : -1;
 
     // path 를 만듦
     // menuId 만 들어왔으면 menuType을 가져옴
     if(menuId !== -1 && postId === -1) {
       getMenuType();
+
+      
     } else {
       // 현재 url의 parameter를 path state에 담음
       setPath({
@@ -73,7 +80,7 @@ const FrameContainer = ({
         postId,
       });
     }
-  }, [match]);
+  }, [history, match]);
 
   return (
     <>

@@ -30,7 +30,7 @@ const BodyPresentation = ({
     <Wrapper>
       <Body>
         {path.menuId === -1 ? (<Home />) :
-        path.menuType === "BOARD" ? (<Board menuId={path.menuId} history={history} />) :
+        path.menuType === "BOARD" ? (<Board path={path} history={history} />) :
         path.menyType === "SINGLE" ? (<></>) : (<></>)}
       </Body>
     </Wrapper>

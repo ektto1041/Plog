@@ -22,83 +22,57 @@ const Pagination = ({
   useEffect(() => {
     const newButtonList = [];
     let newButton = {};
+
+    const makeButton = (num) => {
+      newButton = {
+        text: num,
+        onClick: () => onClickListener(num),
+      };
+
+      newButtonList.push(newButton);
+    };
+
     let newPageCount = parseInt(dataCount / viewCount);
     if(viewCount % dataCount !== 0) newPageCount++;
-
-    console.log(newPageCount);
-    console.log(buttonCount);
 
     if(newPageCount > buttonCount) {
       let range = parseInt(buttonCount / 2);
 
-      console.log(range);
-
       if(buttonCount % 2 === 0) {
         // buttonCount 짝수
+        if(nowPage - range+1 > 1) {
+          // beforeButton 보여줌
+          setIsBeforeButton(true);
+
+          for(let i=nowPage - range+1; i<nowPage; i++) { makeButton(i); }
+        } else {
+          for(let i=1; i<nowPage; i++) { makeButton(i); }
+        }
       } else {
         // buttonCount 홀수
-        console.log(nowPage - range > 1);
         if(nowPage - range > 1) {
           // beforeButton 보여줌
           setIsBeforeButton(true);
 
-          for(let i=nowPage - range; i<nowPage; i++) {
-            newButton = {
-              text: i,
-              onClick: () => onClickListener(i),
-            };
-
-            newButtonList.push(newButton);
-          }
+          for(let i=nowPage - range; i<nowPage; i++) { makeButton(i); }
         } else {
-          for(let i=1; i<nowPage; i++) {
-            newButton = {
-              text: i,
-              onClick: () => onClickListener(i),
-            };
-
-            newButtonList.push(newButton);
-          }
+          for(let i=1; i<nowPage; i++) { makeButton(i); }
         }
-
-        newButton = {
-          text: nowPage,
-          onClick: () => onClickListener(nowPage),
-        };
-
-        newButtonList.push(newButton);
-
-        console.log(nowPage + range);
-        console.log(newPageCount);
-
-        if(nowPage + range < newPageCount) {
-          // afterButton 보여줌
-          setIsAfterButton(true);
-
-          console.log("in!")
-
-          for(let i=nowPage + 1; i<=nowPage + range; i++) {
-            newButton = {
-              text: i,
-              onClick: () => onClickListener(i),
-            };
-
-            newButtonList.push(newButton);
-          }
-        } else {
-          for(let i=nowPage + 1; i<=newPageCount; i++) {
-            newButton = {
-              text: i,
-              onClick: () => onClickListener(i),
-            };
-
-            newButtonList.push(newButton);
-          }
-        }
-
-        console.log(newButtonList);
-        setButtonList(newButtonList);
       }
+
+      // 현재 페이지도 버튼으로 저장
+      makeButton(nowPage)
+
+      if(nowPage + range < newPageCount) {
+        // afterButton 보여줌
+        setIsAfterButton(true);
+
+        for(let i=nowPage + 1; i<=nowPage + range; i++) { makeButton(i); }
+      } else {
+        for(let i=nowPage + 1; i<=newPageCount; i++) { makeButton(i); }
+      }
+
+      setButtonList(newButtonList);
     }
   }, [nowPage, viewCount, dataCount, buttonCount, onClickListener]);
 

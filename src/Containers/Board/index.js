@@ -5,9 +5,10 @@ import Presentation from './presentation';
 
 const BoardContainer = ({
   history,
-  menuId,
+  path,
 }) => {
   const [postList, setPostList] = useState([]);
+  const [nowPage, setNowPage] = useState(1);
 
   useEffect(() => {
     /**
@@ -15,7 +16,7 @@ const BoardContainer = ({
      */
     const getPosts = async () => {
       // menuId를 통해 해당 menu의 모든 post를 가져옴
-      const response = await axios.get(`/posts?menuId=${menuId}`);
+      const response = await axios.get(`/posts?menuId=${path.menuId}`);
 
       try {
         if(response.statusText === 'OK') {
@@ -31,16 +32,20 @@ const BoardContainer = ({
      */
     // 해당 menu의 모든 post 가져오기
     getPosts();
-  }, [menuId]);
+
+    // 임시로 쿼리스트링에 따라 Pagination 변경 테스트
+    if(path.page !== -1) setNowPage(path.page);
+  }, [path]);
 
   const onClickPagination = useCallback((page) => {
-    history.push(`/${menuId}?page=${page}`);
-  }, [history, menuId]);
+    history.push(`/${path.menuId}?page=${page}`);
+  }, [history, path]);
 
   return (
     <>
       <Presentation
         postList={postList}
+        nowPage={nowPage}
         onClickPagination={onClickPagination}
       />
     </>
