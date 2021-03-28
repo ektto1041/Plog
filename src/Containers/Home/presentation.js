@@ -13,7 +13,7 @@ const HomePresentation = () => {
     <Wrapper>
       <h1>이 곳은 HOME 입니다.</h1>
       <h2>알맞게 꾸며주세요.</h2>
-      <Button style={{ background: "crimson", width: '100px' }} className="myclass">hello</Button>
+      <Button style={{ width: '100px' }} className="myclass">hello</Button>
     </Wrapper>
   );
 };
