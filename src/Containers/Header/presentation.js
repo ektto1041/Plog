@@ -81,7 +81,7 @@ const HeaderPresentation = ({
   return (
     <Wrapper>
       <Header>
-        <Logo onClick={() => handleClickHeaderButton(-1)} > <Title>타이틀</Title> </Logo>
+        <Logo onClick={() => handleClickHeaderButton(-1)} > <Title>Plog</Title> </Logo>
         <NavMenu>
           {menuList.map((item) => (
             <NavMenuItem
