@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BoardItem from '../../Components/BoardItem';
-import Button from '../../Components/UI/atoms/Button/button';
+import Pagination from '../../Components/UI/molecules/Pagination';
 
 import dim from '../../Resources/Dimensions';
 
@@ -15,7 +15,6 @@ const BoardPresentation = ({
 }) => {
   return (
     <Wrapper>
-      <Button bgColor="pink">버튼</Button>
       {postList.map(item => (
         <BoardItem
           key={item.POST_ID}
@@ -24,6 +23,7 @@ const BoardPresentation = ({
           content={item.CONTENT}
         />
       ))}
+      <Pagination/>
     </Wrapper>
   );
 };
