@@ -10,7 +10,8 @@ const Css = css`
   border: 0;
   border-radius: ${ifProp({ shape: "round" }, prop("radius", "0"), 0)};
   outline: none;
-  color: ${props => props.theme.basic.color.main};
+  cursor: pointer;
+  // color: ${props => props.theme.basic.color.main};
   
   ${{...prop("style", {})}}
 `;

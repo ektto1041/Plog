@@ -21,6 +21,7 @@ const Body = styled.div`
 `;
 
 const BodyPresentation = ({
+  history,
   path,
 }) => {
   console.log(path);
@@ -29,7 +30,7 @@ const BodyPresentation = ({
     <Wrapper>
       <Body>
         {path.menuId === -1 ? (<Home />) :
-        path.menuType === "BOARD" ? (<Board menuId={path.menuId} />) :
+        path.menuType === "BOARD" ? (<Board menuId={path.menuId} history={history} />) :
         path.menyType === "SINGLE" ? (<></>) : (<></>)}
       </Body>
     </Wrapper>

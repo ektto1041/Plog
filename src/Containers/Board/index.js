@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
 import Presentation from './presentation';
 
 const BoardContainer = ({
+  history,
   menuId,
 }) => {
   const [postList, setPostList] = useState([]);
@@ -32,10 +33,15 @@ const BoardContainer = ({
     getPosts();
   }, [menuId]);
 
+  const onClickPagination = useCallback((page) => {
+    history.push(`/${menuId}?page=${page}`);
+  }, [history, menuId]);
+
   return (
     <>
       <Presentation
         postList={postList}
+        onClickPagination={onClickPagination}
       />
     </>
   );
