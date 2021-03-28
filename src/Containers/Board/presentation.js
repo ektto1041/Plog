@@ -15,7 +15,7 @@ const BoardPresentation = ({
 }) => {
   return (
     <Wrapper>
-      <Button />
+      <Button bgColor="pink">버튼</Button>
       {postList.map(item => (
         <BoardItem
           key={item.POST_ID}
