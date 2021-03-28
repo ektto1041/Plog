@@ -1,16 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Frame from './Containers/Frame';
-import {BrowserRouter, Route} from 'react-router-dom'
 import reportWebVitals from './reportWebVitals';
+import Routes from './routes';
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Route exact path="/" component={Frame} />
-    <Route exact path="/:menuId" component={Frame} />
-    <Route exact path="/:menuId/:postId" component={Frame} />
-  </BrowserRouter>,
+  <Routes />,
   document.getElementById('root')
 );
 
