@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import BoardItem from '../../Components/BoardItem';
+import Button from '../../Components/UI/atoms/Button/button';
 
 import dim from '../../Resources/Dimensions';
 
@@ -14,6 +15,7 @@ const BoardPresentation = ({
 }) => {
   return (
     <Wrapper>
+      <Button />
       {postList.map(item => (
         <BoardItem
           key={item.POST_ID}
