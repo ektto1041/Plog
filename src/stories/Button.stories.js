@@ -1,36 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-import { Button } from './Button';
+import Button from '../Components/UI/atoms/Button';
+import col from '../Resources/Colors';
 
 export default {
-  title: 'Example/Button',
   component: Button,
-  argTypes: {
-    backgroundColor: { control: 'color' },
-  },
+  title: 'Button',
 };
 
-const Template = (args) => <Button {...args} />;
+const Template = args => <Button {...args}>버튼</Button>;
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
-  label: 'Button',
+export const Default = Template.bind({});
+Default.args = {
+  shape: 'round',
 };
 
-export const Secondary = Template.bind({});
-Secondary.args = {
-  label: 'Button',
+Button.propTypes = {
+  shape: PropTypes.string,
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large',
-  label: 'Button',
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small',
-  label: 'Button',
+Button.defaultProps = {
+  shape: 0,
 };
