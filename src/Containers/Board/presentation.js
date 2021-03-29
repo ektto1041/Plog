@@ -3,8 +3,10 @@ import styled from 'styled-components';
 
 import BoardItem from '../../Components/BoardItem';
 import Pagination from '../../Components/UI/molecules/Pagination';
+import Button from '../../Components/UI/atoms/Button';
 
 import dim from '../../Resources/Dimensions';
+import EditText from '../../Components/UI/atoms/EditText';
 
 const Wrapper = styled.div`
   padding: ${dim.boardPadding}px;
@@ -27,6 +29,8 @@ const BoardPresentation = ({
         />
       ))}
       <Pagination nowPage={nowPage} viewCount={10} buttonCount={5} dataCount={dataCount} onClickListener={onClickPagination} />
+      {/* TODO 임시로 넣어둔 버튼 */}
+      <Button>글쓰기</Button>
     </Wrapper>
   );
 };

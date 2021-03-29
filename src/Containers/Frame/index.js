@@ -79,7 +79,7 @@ const FrameContainer = ({
 
     // path 를 만듦
     // menuId 만 들어왔으면 menuType을 가져옴
-    if(menuId !== -1 && postId === -1) {
+    if(menuId > -1 && postId === -1) {
       getMenuType();
 
       

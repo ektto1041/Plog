@@ -12,6 +12,7 @@ const Css = css`
   font-weight: bold;
   outline: none;
   cursor: pointer;
+  padding: 10px;
   // color: ${props => props.theme.basic.color.main};
   
   ${{...prop("style", {})}}

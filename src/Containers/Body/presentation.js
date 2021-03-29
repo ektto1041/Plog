@@ -5,6 +5,7 @@ import Home from '../Home';
 import Board from '../Board';
 
 import dim from '../../Resources/Dimensions';
+import Writing from '../Writing';
 
 const Wrapper = styled.div`
   width: 100%;
@@ -30,6 +31,7 @@ const BodyPresentation = ({
     <Wrapper>
       <Body>
         {path.menuId === -1 ? (<Home />) :
+        path.menuId === -2 ? (<Writing />) :
         path.menuType === "BOARD" ? (<Board path={path} history={history} />) :
         path.menyType === "SINGLE" ? (<></>) : (<></>)}
       </Body>
