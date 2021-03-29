@@ -15,26 +15,16 @@ const BoardContainer = ({
     /**
      *  api Function
      */
-    const getPostCount = async () => {
-      // menuId 를 통해 해당 menu의 모든 post 갯수를 가져옴
-      const response = await axios.get(`/postCount?menuId=${path.menuId}`);
-
-      try {
-      if(response.statusText === 'OK') {
-        setDataCount(response.data[0][`count(*)`]);
-      } else throw new Error(`API Error(${response.status})`);
-      } catch(e) {
-        console.error(e);
-      }
-    }
-
+    // menuId를 통해 해당 menu의 모든 post 수를 가져오고, post를 페이징하여 가져옴
     const getPosts = async () => {
-      // menuId를 통해 해당 menu의 모든 post를 페이징하여 가져옴
       const response = await axios.get(`/posts?menuId=${path.menuId}&offset=${newNowPage}&limit=10`);
 
       try {
         if(response.statusText === 'OK') {
-          setPostList(response.data);
+          console.log(response.data);
+
+          setDataCount(response.data.count);
+          setPostList(response.data.postList);
         } else throw new Error(`API Error(${response.status})`);
       } catch(e) {
         console.error(e);
@@ -48,10 +38,7 @@ const BoardContainer = ({
     const newNowPage = path.page !== -1 ? path.page : 1;
     setNowPage(newNowPage);
 
-    // 해당 menu의 모든 post 갯수 가져오기
-    getPostCount();
-
-    // 해당 menu의 모든 post를 페이징해서 가져오기
+    // 해당 menu의 모든 post 수를 가져오고 post를 페이징해서 가져오기
     getPosts();
   }, [path]);
 
