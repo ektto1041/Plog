@@ -1,10 +1,15 @@
 import React from 'react';
-import { ButtonStyle } from './style';
+
+import { ButtonStyle, RoundButtonStyle } from './style';
 
 const Button = (props) => {
-  return (
-    <ButtonStyle {...props}>{props.children}</ButtonStyle>
-  )
-}
+  const { shape } = props;
+  if (shape === 'round') {
+    // round 전용 스타일 렌더링
+    return <RoundButtonStyle {...props}>{props.children}</RoundButtonStyle>;
+  } else {
+    return <ButtonStyle {...props}>{props.children}</ButtonStyle>;
+  }
+};
 
 export default Button;

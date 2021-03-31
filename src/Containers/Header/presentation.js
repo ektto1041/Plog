@@ -1,11 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import dim from '../../Resources/Dimensions';
-import col from '../../Resources/Colors';
-
-import MenuItem from '../../Components/MenuItem';
-import Dropdown from '../../Components/Dropdown';
+import dim from 'Resources/Dimensions';
+import col from 'Resources/Colors';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -15,17 +12,16 @@ const Wrapper = styled.div`
   z-index: 100;
   
   background: white;
-
-  box-shadow: 0 0 10px gray; 
+  box-shadow: 0 0 10px gray;
 `;
 
-  const Header = styled.div`
-    display: flex;
-    align-items: center;
-    width: ${dim.displayWidth}px;
-    height: ${dim.headerHeight}px;
-    margin: 0 auto;
-  `;
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  width: ${dim.displayWidth}px;
+  height: ${dim.headerHeight}px;
+  margin: 0 auto;
+`;
 
     const Logo = styled.div`
       width: ${dim.headerLogoWidth}px;
