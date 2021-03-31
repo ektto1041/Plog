@@ -6,7 +6,6 @@ import Pagination from '../../Components/UI/molecules/Pagination';
 import Button from '../../Components/UI/atoms/Button';
 
 import dim from '../../Resources/Dimensions';
-import EditText from '../../Components/UI/atoms/EditText';
 
 const Wrapper = styled.div`
   padding: ${dim.boardPadding}px;
