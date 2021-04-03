@@ -4,6 +4,7 @@ module.exports = {
   stories: [
     '../src/Components/UI/atoms/**/story.js',
     '../src/Components/UI/molecules/**/story.js',
+    '../src/Components/UI/organisms/**/story.js',
   ],
   addons: [
     '@storybook/addon-links',
