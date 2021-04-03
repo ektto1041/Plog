@@ -1,13 +1,12 @@
 import styled, { css } from 'styled-components';
+import { prop } from 'styled-tools';
 
 const Css = css`
-    background: ${props => props.background ? props.background : 'none'};
+  font-size: ${prop('fontSize', (props) => props.theme.basic.fontSize)};
 `;
 
 const TextStyle = styled.span`
-${Css}
+  ${Css}
 `;
 
-export {
-    TextStyle,
-};
+export { TextStyle };
