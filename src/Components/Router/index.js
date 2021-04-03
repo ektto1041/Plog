@@ -119,7 +119,10 @@ const Router = ({
       
           switch (menuType) {
             case 'BOARD': {
-              return <Board />;
+              return (
+                <Board
+                  path={path}
+                />);
             }
             case 'SINGLE': {
               return null;
