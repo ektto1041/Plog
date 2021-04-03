@@ -160,6 +160,7 @@
     "@storybook/addon-actions": "^6.1.21",
     "@storybook/addon-essentials": "^6.1.21",
     "@storybook/addon-links": "^6.1.21",
-    "@storybook/react": "^6.1.21"
+    "@storybook/react": "^6.1.21",
+    "storybook-addon-styled-component-theme": "^2.0.0"
   }
 }

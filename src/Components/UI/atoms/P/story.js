@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from './index';
+import P from './index';
 
 export default {
-  component: Button,
-  title: 'Button',
+  component: P,
+  title: 'P',
   argTypes: {
     shape: {
       control: {
@@ -16,7 +16,7 @@ export default {
   },
 };
 
-const Template = (args) => <Button {...args}>버튼</Button>;
+const Template = (args) => <P {...args}>버튼</P>;
 
 // Default 버튼
 export const Default = Template.bind({});
@@ -24,16 +24,9 @@ Default.args = {
   shape: 'normal',
 };
 
-Button.propTypes = {
+P.propTypes = {
   shape: PropTypes.oneOf(['normal', 'round']),
 };
-Button.defaultProps = {
+P.defaultProps = {
   shape: 'normal',
-};
-
-// 원형 버튼
-export const RoundButton = Template.bind({});
-RoundButton.args = {
-  shape: 'round',
-  radius: 20,
 };
