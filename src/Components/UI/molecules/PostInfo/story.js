@@ -8,11 +8,14 @@ export default {
   title: 'PostInfo',
 };
 
-const Template = (args) => <PostInfo {...args} />;
+const Template = (args) => <PostInfo date={args.date} view={args.view} />;
 
 // Default 이미지
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  date: '2021.03.29',
+  view: 2836,
+};
 
 PostInfo.propTypes = {};
 PostInfo.defaultProps = {};

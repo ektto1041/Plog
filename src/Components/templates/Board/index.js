@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+
 import Pagination from 'Components/UI/molecules/Pagination';
+import Post from 'Components/UI/organisms/Post';
 
 const Wrapper = styled.div``;
 
@@ -14,21 +16,16 @@ const BoardTemplate = ({
 }) => {
   return (
     <Wrapper>
-      {postList.map(item => (
-        // <BoardItem
-        //   key={item.POST_ID}
-        //   title={item.TITLE}
-        //   updDate={item.UPD_DATE}
-        //   content={item.CONTENT}
-        // />
-        item.TITLE
+      {postList.map((post) => (
+        <Post post={post} />
       ))}
       <Pagination
         nowPage={nowPage}
         viewCount={10}
         buttonCount={5}
         dataCount={dataCount}
-        onClickListener={onClickPagination} />
+        onClickListener={onClickPagination}
+      />
     </Wrapper>
   );
 };

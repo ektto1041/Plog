@@ -33,23 +33,19 @@ const Wrapper = styled.div`
   }
 `;
 
-const Post = () => {
+const Post = ({ post }) => {
+  console.log(post);
   return (
     <Wrapper>
       <div className="post-img">
         <Img src={TestImg} width="120px" height="120px" />
       </div>
       <div className="post-content">
-        <Text fontSize="26px">title</Text>
+        <Text fontSize="26px">{post.TITLE}</Text>
         <P className="post-content-body" color="#666">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. At aspernatur
-          ad accusantium praesentium aut maiores nemo consequatur quasi vitae
-          ratione, quibusdam laudantium ducimus non repellendus neque aperiam.
-          Voluptate sed nemo iusto sequi beatae, nam quae magni quam sint fugit
-          odio atque, natus consequuntur voluptatibus numquam nostrum incidunt
-          rem minima doloribus?
+          {post.CONTENT}
         </P>
-        <PostInfo />
+        <PostInfo date={post.REG_DATE} view={post.view || 1000} />
       </div>
     </Wrapper>
   );
