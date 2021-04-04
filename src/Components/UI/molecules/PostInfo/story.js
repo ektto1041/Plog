@@ -17,5 +17,12 @@ Default.args = {
   view: 2836,
 };
 
-PostInfo.propTypes = {};
-PostInfo.defaultProps = {};
+PostInfo.propTypes = {
+  date: PropTypes.string.isRequired,
+  view: PropTypes.number.isRequired,
+};
+
+PostInfo.defaultProps = {
+  date: '2021.03.29',
+  view: 1000,
+};

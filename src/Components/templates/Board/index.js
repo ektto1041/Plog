@@ -5,7 +5,10 @@ import styled from 'styled-components';
 import Pagination from 'Components/UI/molecules/Pagination';
 import Post from 'Components/UI/organisms/Post';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 90%;
+  margin: auto;
+`;
 
 const BoardTemplate = ({
   path,
@@ -32,8 +35,8 @@ const BoardTemplate = ({
 
 BoardTemplate.propTypes = {
   path: PropTypes.object,
-  nowPage: PropTypes.number.isRequired,
   postList: PropTypes.array.isRequired,
+  nowPage: PropTypes.number.isRequired,
   dataCount: PropTypes.number.isRequired,
   onClickPagination: PropTypes.func.isRequired,
 };
@@ -41,6 +44,7 @@ BoardTemplate.propTypes = {
 BoardTemplate.defaultProps = {
   nowPage: 1,
   postList: [],
+  nowPage: 1,
   dataCount: 0,
   onClickPagination: () => {},
 };

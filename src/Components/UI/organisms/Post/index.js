@@ -45,7 +45,7 @@ const Post = ({ post }) => {
         <P className="post-content-body" color="#666">
           {post.CONTENT}
         </P>
-        <PostInfo date={post.REG_DATE} view={post.view || 1000} />
+        <PostInfo date={post.REG_DATE} view={post.VIEW} />
       </div>
     </Wrapper>
   );
