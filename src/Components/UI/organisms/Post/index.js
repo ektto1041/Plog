@@ -12,11 +12,24 @@ const Wrapper = styled.div`
   align-items: center;
   padding: 10px;
 
+  // 글 썸네일
   .post-img {
   }
 
+  // 글 제목과 요약된 내용
   .post-content {
     margin-left: 20px;
+    height: 120px;
+  }
+
+  // 글 요약된 내용
+  .post-content-body {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
   }
 `;
 
@@ -24,11 +37,18 @@ const Post = () => {
   return (
     <Wrapper>
       <div className="post-img">
-        <Img src={TestImg} width="100px" height="100px" />
+        <Img src={TestImg} width="120px" height="120px" />
       </div>
       <div className="post-content">
         <Text fontSize="26px">title</Text>
-        <P color="#666">content</P>
+        <P className="post-content-body" color="#666">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. At aspernatur
+          ad accusantium praesentium aut maiores nemo consequatur quasi vitae
+          ratione, quibusdam laudantium ducimus non repellendus neque aperiam.
+          Voluptate sed nemo iusto sequi beatae, nam quae magni quam sint fugit
+          odio atque, natus consequuntur voluptatibus numquam nostrum incidunt
+          rem minima doloribus?
+        </P>
         <PostInfo />
       </div>
     </Wrapper>
