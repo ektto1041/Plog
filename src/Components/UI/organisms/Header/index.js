@@ -10,6 +10,7 @@ display: flex;
 align-items: center;
 
 // item
+width: 100%;
 
 // normal
 background: gray;

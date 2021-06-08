@@ -1,4 +1,6 @@
 /**
+ * 블로그 앱의 컨테이너 역할을 하는 컴포넌트
+ * 
  * pages에는 styled-components 사용하지 않기
  * templates이 presentation 역할이므로 스타일 설정을 templates에 위임하기
  */
