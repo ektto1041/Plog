@@ -1,14 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import dim from 'Resources/Dimensions';
 import Button from 'Components/UI/atoms/Button';
 
 const Wrapper = styled.div`
-  width: ${dim.displayWidth}px;
+align-items: center;
 `;
 
-const HomePresentation = () => {
+const Home = () => {
   return (
     <Wrapper>
       <h1>이 곳은 HOME 입니다.</h1>
@@ -18,4 +17,4 @@ const HomePresentation = () => {
   );
 };
 
-export default HomePresentation;
+export default Home;

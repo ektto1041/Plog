@@ -5,7 +5,14 @@ import HeaderMenus from 'Components/UI/molecules/HeaderMenus';
 import Text from 'Components/UI/atoms/Text/text';
 
 const Wrapper = styled.div`
-  display: flex;
+// container
+display: flex;
+align-items: center;
+
+// item
+
+// normal
+background: gray;
 `;
 
 const Header = () => {
