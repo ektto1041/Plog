@@ -1,18 +1,22 @@
+import HomeDesc from 'Components/UI/organisms/HomeDesc';
 import React from 'react';
 import styled from 'styled-components';
 
-import Button from 'Components/UI/atoms/Button';
-
 const Wrapper = styled.div`
-background: skyblue;
+// container
+display: flex;
+align-items: center;
+justify-content: center;
+
+// item
+
+background: #e8eaed;
 `;
 
 const Home = () => {
   return (
     <Wrapper className="body">
-      <h1>이 곳은 HOME 입니다.</h1>
-      <h2>알맞게 꾸며주세요.</h2>
-      <Button shape="round" radius={10}>hello</Button>
+      <HomeDesc />
     </Wrapper>
   );
 };

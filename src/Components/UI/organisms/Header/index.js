@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import HeaderMenus from 'Components/UI/molecules/HeaderMenus';
-import Text from 'Components/UI/atoms/Text/text';
+import Button from 'Components/UI/atoms/Button';
 
 const Wrapper = styled.div`
 // container
@@ -12,15 +12,27 @@ align-items: center;
 // item
 width: 100%;
 
-// normal
-background: gray;
+// header 제목
+.header-title {
+  background: none;
+}
 `;
 
-const Header = () => {
+const Header = ({
+  history,
+}) => {
   return (
     <Wrapper>
-      <Text>Plog</Text>
-      <HeaderMenus />
+      <Button
+        className="header-title"
+        onClick={() => history.push('/')}
+      >
+        Plog
+      </Button>
+      <HeaderMenus
+        menuItemList={[]}
+        history={history}
+      />
     </Wrapper>
   );
 };

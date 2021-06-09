@@ -23,15 +23,17 @@ const Wrapper = styled.div`
   }
 `;
 
-const Frame = () => {
+const Frame = ({
+  history,
+}) => {
   return (
     <Wrapper>
-      <Header />
+      <Header history={history} />
 
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route exact path="/post/:menuId" component={Frame} />
-        <Route exact path="/post/:menuId/:postId" component={Frame} />
+        <Route exact path="/post/:menuId" component={Board} />
+        <Route exact path="/post/:menuId/:postId" component={Board} />
 
         <Route exact path="/board" component={Board} />
       </Switch>

@@ -1,6 +1,7 @@
 const common = {
   white: '#fff',
   black: '#000',
+  bg: '#e8eaed',
 };
 
 const theme = {
