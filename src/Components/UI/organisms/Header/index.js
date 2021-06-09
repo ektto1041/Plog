@@ -1,20 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import HeaderMenus from 'Components/UI/molecules/HeaderMenus';
 import Button from 'Components/UI/atoms/Button';
+import HeaderMenus from 'Components/UI/molecules/HeaderMenus';
+import HeaderBtns from 'Components/UI/molecules/HeaderBtns';
 
 const Wrapper = styled.div`
 // container
 display: flex;
 align-items: center;
+height: 100px;
 
-// item
+// flex-item
 width: 100%;
 
 // header 제목
 .header-title {
   background: none;
+  flex-basis: 8%;
 }
 `;
 
@@ -26,6 +29,7 @@ const Header = ({
       <Button
         className="header-title"
         onClick={() => history.push('/')}
+        style={{ fontSize: '26px' }}
       >
         Plog
       </Button>
@@ -33,6 +37,7 @@ const Header = ({
         menuItemList={[]}
         history={history}
       />
+      <HeaderBtns />
     </Wrapper>
   );
 };

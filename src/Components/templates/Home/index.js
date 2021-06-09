@@ -10,7 +10,7 @@ justify-content: center;
 
 // item
 
-background: #e8eaed;
+// background: #e8eaed;
 `;
 
 const Home = () => {

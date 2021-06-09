@@ -4,25 +4,30 @@ import Button from 'Components/UI/atoms/Button';
 
 const Wrapper = styled.div`
   display: flex;
-  margin-left: 20px;
+  justify-content: center;
 
   // flex-item
-  flex-basis: 80%;
+  flex-basis: 12%;
 
-  // menu
-  .menu-item {
+  .header-btns {
     background: none;
-    color: ${props => props.theme.basic.color.black}
+    border: 1px solid lightgray;
+    border-radius: 10%;
+    margin: 0 5px;
+
+    &:hover {
+      background: gold;
+      color: #fff;
+      border-color: #fff;
+    }
   }
 `;
 
 const HeaderMenus = ({
-  menuItemList,
-  history,
 }) => {
   return (
     <Wrapper>
-      <Button className="menu-item" onClick={() => history.push('/post/1')}>프로그래밍</Button>
+      <Button className="header-btns">로그인</Button>
     </Wrapper>
   );
 }

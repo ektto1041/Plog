@@ -14,8 +14,6 @@ const Wrapper = styled.div`
   align-items: center;
   min-height: 100vh;
 
-  background: gold;
-
   // body 영역 공통 css
   .body {
     width: 100%;
