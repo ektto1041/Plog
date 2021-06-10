@@ -1,6 +1,7 @@
-import HomeDesc from 'Components/UI/organisms/HomeDesc';
 import React from 'react';
 import styled from 'styled-components';
+
+import HomeDesc from 'Components/UI/organisms/HomeDesc';
 
 const Wrapper = styled.div`
 // container

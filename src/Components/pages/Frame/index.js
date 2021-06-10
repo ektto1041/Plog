@@ -15,6 +15,7 @@ const Frame = ({
 }) => {
   const [path, setPath] = useState({}); // 현재 url의 parameters
   const [menuList, setMenuList] = useState([]); // 모든 메뉴 리스트
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 웹 실행 시 가장 먼저, 한 번만 실행되는 로직
   // Routing이 달라지면 실행됨
@@ -99,12 +100,19 @@ const Frame = ({
     }
   }, [history, match]);
 
+  // Modal 열기/닫기 메소드
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   return (
     <>
       <FrameTemplate
         path = {path}
         menuList = {menuList}
         history = {history}
+        isModalOpen={isModalOpen}
+        openModal={openModal}
+        closeModal={closeModal}
       />
     </>
   );

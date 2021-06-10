@@ -10,6 +10,7 @@ const Wrapper = styled.div`
 display: flex;
 align-items: center;
 height: 100px;
+border-bottom: 1px solid #eaeaea;
 
 // flex-item
 width: 100%;
@@ -23,6 +24,7 @@ width: 100%;
 
 const Header = ({
   history,
+  openModal,
 }) => {
   return (
     <Wrapper>
@@ -37,7 +39,7 @@ const Header = ({
         menuItemList={[]}
         history={history}
       />
-      <HeaderBtns />
+      <HeaderBtns openModal={openModal} />
     </Wrapper>
   );
 };
