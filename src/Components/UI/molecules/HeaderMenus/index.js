@@ -17,12 +17,15 @@ const Wrapper = styled.div`
 `;
 
 const HeaderMenus = ({
-  menuItemList,
+  menuList,
   history,
 }) => {
   return (
     <Wrapper>
-      <Button className="menu-item" onClick={() => history.push('/post/1')}>프로그래밍</Button>
+      {
+        menuList.map(menu => 
+          (<Button className="menu-item" onClick={() => history.push(`/post/${menu.menu_id}`)}>{menu.name}</Button>))
+      }
     </Wrapper>
   );
 }

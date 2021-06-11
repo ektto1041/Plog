@@ -25,6 +25,7 @@ width: 100%;
 const Header = ({
   history,
   openModal,
+  menuList,
 }) => {
   return (
     <Wrapper>
@@ -36,7 +37,7 @@ const Header = ({
         Plog
       </Button>
       <HeaderMenus
-        menuItemList={[]}
+        menuList={menuList}
         history={history}
       />
       <HeaderBtns openModal={openModal} />

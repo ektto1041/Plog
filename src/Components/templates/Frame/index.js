@@ -29,6 +29,8 @@ const Frame = ({
   isModalOpen,
   openModal,
   closeModal,
+  loginWithKakao,
+  menuList,
 }) => {
   return (
     <Wrapper>
@@ -36,6 +38,7 @@ const Frame = ({
       <Header
         openModal={openModal}
         history={history}
+        menuList={menuList}
       />
 
       {/* 라우터 */}
@@ -53,7 +56,7 @@ const Frame = ({
         isOpen={isModalOpen}
         closeModal={closeModal}
       >
-        <LoginForm />
+        <LoginForm loginWithKakao={loginWithKakao} />
       </Modal>
     </Wrapper>
   );
