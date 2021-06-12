@@ -9,6 +9,7 @@ import Footer from '../Footer';
 
 import Modal from 'Components/UI/organisms/Modal';
 import LoginForm from 'Components/UI/organisms/LoginForm';
+import { MODAL_TYPE_JOIN, MODAL_TYPE_LOGIN } from 'utils/const';
 
 // flex container
 const Wrapper = styled.div`
@@ -26,11 +27,12 @@ const Wrapper = styled.div`
 
 const Frame = ({
   history,
+  menuList,
+  loginWithKakao,
   isModalOpen,
   openModal,
   closeModal,
-  loginWithKakao,
-  menuList,
+  modalType,
 }) => {
   return (
     <Wrapper>
@@ -56,7 +58,8 @@ const Frame = ({
         isOpen={isModalOpen}
         closeModal={closeModal}
       >
-        <LoginForm loginWithKakao={loginWithKakao} />
+        {modalType === MODAL_TYPE_LOGIN && <LoginForm loginWithKakao={loginWithKakao} />}
+        {modalType === MODAL_TYPE_JOIN && <div>회원가입화면</div>}
       </Modal>
     </Wrapper>
   );

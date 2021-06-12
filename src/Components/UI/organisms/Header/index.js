@@ -5,6 +5,8 @@ import Button from 'Components/UI/atoms/Button';
 import HeaderMenus from 'Components/UI/molecules/HeaderMenus';
 import HeaderBtns from 'Components/UI/molecules/HeaderBtns';
 
+import { MODAL_TYPE_LOGIN, MODAL_TYPE_JOIN } from 'utils/const';
+
 const Wrapper = styled.div`
 // container
 display: flex;
@@ -27,6 +29,15 @@ const Header = ({
   openModal,
   menuList,
 }) => {
+  // 로그인 모달 열기
+  const openLoginModal = () => {
+    openModal(MODAL_TYPE_LOGIN);
+  }
+  // 로그인 모달 열기
+  const openJoinModal = () => {
+    openModal(MODAL_TYPE_JOIN);
+  }
+
   return (
     <Wrapper>
       <Button
@@ -40,7 +51,10 @@ const Header = ({
         menuList={menuList}
         history={history}
       />
-      <HeaderBtns openModal={openModal} />
+      <HeaderBtns
+        openLoginModal={openLoginModal}
+        openJoinModal={openJoinModal}
+      />
     </Wrapper>
   );
 };

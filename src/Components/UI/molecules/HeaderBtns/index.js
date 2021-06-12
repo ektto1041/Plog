@@ -24,15 +24,22 @@ const Wrapper = styled.div`
 `;
 
 const HeaderMenus = ({
-  openModal,
+  openLoginModal,
+  openJoinModal,
 }) => {
   return (
     <Wrapper>
       <Button
         className="header-btns"
-        onClick={openModal}
+        onClick={openLoginModal}
       >
         로그인
+      </Button>
+      <Button
+        className="header-btns"
+        onClick={openJoinModal}
+      >
+        회원가입
       </Button>
     </Wrapper>
   );

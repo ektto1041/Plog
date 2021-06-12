@@ -8,6 +8,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FrameTemplate from 'Components/templates/Frame';
+import { MODAL_TYPE_LOGIN, MODAL_TYPE_JOIN } from 'utils/const';
 
 const Frame = ({
   match,
@@ -16,6 +17,8 @@ const Frame = ({
   const [path, setPath] = useState({}); // 현재 url의 parameters
   const [menuList, setMenuList] = useState([]); // 모든 메뉴 리스트
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(null); // Modal Type
+  const [user, setUser] = useState(null);
 
   // 웹 실행 시 가장 먼저, 한 번만 실행되는 로직
   // Routing이 달라지면 실행됨
@@ -101,18 +104,49 @@ const Frame = ({
   }, [history, match]);
 
   // Modal 열기/닫기 메소드
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
+  const openModal = (type) => {
+    setIsModalOpen(true);
+    setModalType(type);
+  }
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalType(null);
+  }
+
+  // kakao login 메소드
+  const loginWithKakao = () => {
+    window.Kakao.Auth.login({
+      success: function(authObj) {
+        window.Kakao.API.request({
+          url: '/v2/user/me',
+          success: function(res) {
+            console.log('$$$ 카카오 유저 정보 얻어오기 성공', res);
+            setUser(res);
+          },
+          fail: function(error) {
+            alert(
+              'login success, but failed to request user information: ' +
+                JSON.stringify(error)
+            )
+          },
+        })
+      },
+      fail: function(err) {
+        alert(JSON.stringify(err))
+      },
+    })
+  }
 
   return (
     <>
       <FrameTemplate
-        path = {path}
-        menuList = {menuList}
         history = {history}
+        menuList = {menuList}
+        loginWithKakao={loginWithKakao}
         isModalOpen={isModalOpen}
         openModal={openModal}
         closeModal={closeModal}
+        modalType={modalType}
       />
     </>
   );

@@ -1,0 +1,2 @@
+export const MODAL_TYPE_LOGIN = 'MODAL_TYPE_LOGIN';
+export const MODAL_TYPE_JOIN = 'MODAL_TYPE_JOIN';
