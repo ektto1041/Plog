@@ -1,19 +1,15 @@
 /**
  * 블로그 앱의 컨테이너 역할을 하는 컴포넌트
- * 
+ *
  * pages에는 styled-components 사용하지 않기
  * templates이 presentation 역할이므로 스타일 설정을 templates에 위임하기
  */
 
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import FrameTemplate from 'Components/templates/Frame';
-import { MODAL_TYPE_LOGIN, MODAL_TYPE_JOIN } from 'utils/const';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import FrameTemplate from "Components/templates/Frame";
 
-const Frame = ({
-  match,
-  history,
-}) => {
+const Frame = ({ match, history }) => {
   const [path, setPath] = useState({}); // 현재 url의 parameters
   const [menuList, setMenuList] = useState([]); // 모든 메뉴 리스트
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -30,10 +26,10 @@ const Frame = ({
       const response = await axios.get(`/menus`);
 
       try {
-        if(response.statusText === 'OK') {
+        if (response.statusText === "OK") {
           setMenuList(response.data);
         } else throw new Error(`API Error(${response.status})`);
-      } catch(e) {
+      } catch (e) {
         console.error(e);
       }
     };
@@ -54,18 +50,18 @@ const Frame = ({
       const response = await axios.get(`/menuType?menuId=${menuId}`);
 
       try {
-        if(response.statusText === 'OK') {
+        if (response.statusText === "OK") {
           setPath({
             menuId,
             postId,
             page,
-            menuType: response.data[0].TYPE
+            menuType: response.data[0].TYPE,
           });
         } else throw new Error(`API Error(${response.status})`);
-      } catch(e) {
+      } catch (e) {
         console.error(e);
       }
-    }
+    };
 
     /**
      *  코드는 아래부터 시작
@@ -77,23 +73,21 @@ const Frame = ({
     const { search } = history.location;
 
     const queryString = {};
-    if(search !== "") {
-      const queryStringArray = search.substring(1, search.length).split('&');
-      queryStringArray.forEach(item => {
-        const tmp = item.split('=');
+    if (search !== "") {
+      const queryStringArray = search.substring(1, search.length).split("&");
+      queryStringArray.forEach((item) => {
+        const tmp = item.split("=");
 
         queryString[tmp[0]] = tmp[1];
       });
     }
-    
+
     const page = queryString.page ? parseInt(queryString.page) : -1;
 
     // path 를 만듦
     // menuId 만 들어왔으면 menuType을 가져옴
-    if(menuId > -1 && postId === -1) {
+    if (menuId > -1 && postId === -1) {
       getMenuType();
-
-      
     } else {
       // 현재 url의 parameter를 path state에 담음
       setPath({
@@ -107,46 +101,47 @@ const Frame = ({
   const openModal = (type) => {
     setIsModalOpen(true);
     setModalType(type);
-  }
+  };
   const closeModal = () => {
     setIsModalOpen(false);
     setModalType(null);
-  }
+  };
 
   // kakao login 메소드
   const loginWithKakao = () => {
     window.Kakao.Auth.login({
-      success: function(authObj) {
+      success: function (authObj) {
         window.Kakao.API.request({
-          url: '/v2/user/me',
-          success: function(res) {
-            console.log('$$$ 카카오 유저 정보 얻어오기 성공', res);
+          url: "/v2/user/me",
+          success: function (res) {
+            console.log("$$$ 카카오 유저 정보 얻어오기 성공", res);
             setUser(res);
           },
-          fail: function(error) {
+          fail: function (error) {
             alert(
-              'login success, but failed to request user information: ' +
+              "login success, but failed to request user information: " +
                 JSON.stringify(error)
-            )
+            );
           },
-        })
+        });
       },
-      fail: function(err) {
-        alert(JSON.stringify(err))
+      fail: function (err) {
+        alert(JSON.stringify(err));
       },
-    })
-  }
+    });
+  };
 
   return (
     <>
       <FrameTemplate
-        history = {history}
-        menuList = {menuList}
+        history={history}
+        menuList={menuList}
         loginWithKakao={loginWithKakao}
         isModalOpen={isModalOpen}
         openModal={openModal}
         closeModal={closeModal}
         modalType={modalType}
+        setModalType={setModalType}
       />
     </>
   );
