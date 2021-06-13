@@ -16,12 +16,44 @@ const Wrapper = styled.div`
   }
 
   .joinform-body {
-    .login-kakao-btn {
-      background: none;
-      padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    .title {
+      margin-bottom: 30px;
+      font-size: 28px;
+      font-weight: bold;
     }
-    img {
-      cursor: pointer;
+
+    hr {
+      width: 80%;
+      border-color: #eaeaea;
+      margin: 20px 0;
+    }
+
+    // 인풋
+    .joinform-input {
+      width: 50%;
+    }
+
+    .join-btns {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    // 로그인 버튼
+    .join-btn {
+      background: none;
+      padding: 10px 20px;
+      border: 1px solid #000;
+      margin: 0 5px;
+    }
+    .join-btn:hover {
+      background: #000;
+      color: #fff;
     }
   }
 `;

@@ -4,12 +4,13 @@
 
 import React, { useState } from "react";
 import axios from "axios";
+
 import { STATUS_OK } from "utils/const";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "Components/UI/atoms/Button";
 import Input from "Components/UI/atoms/Input";
 import Text from "Components/UI/atoms/Text";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 import Wrapper from "./style";
 
@@ -47,12 +48,12 @@ const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
   return (
     <Wrapper>
       <div className="loginform-header">
-        <Button>
-          <FontAwesomeIcon icon={faTimes} onClick={closeModal} />
+        <Button onClick={closeModal}>
+          <FontAwesomeIcon icon={faTimes} />
         </Button>
       </div>
       <div className="loginform-body">
-        <Text className="title">PLOG</Text>
+        <Text className="title">로그인</Text>
         <Input
           placeholder="이메일"
           type="email"

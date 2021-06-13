@@ -6,10 +6,15 @@ import React, { useState } from "react";
 import axios from "axios";
 
 import { MODAL_TYPE_LOGIN, STATUS_OK } from "utils/const";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Button from "Components/UI/atoms/Button";
+import Input from "Components/UI/atoms/Input";
+import Text from "Components/UI/atoms/Text";
+
 import Wrapper from "./style";
 
-const JoinForm = ({ setModalType }) => {
+const JoinForm = ({ setModalType, closeModal }) => {
   const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -40,45 +45,59 @@ const JoinForm = ({ setModalType }) => {
       }
     } catch (e) {
       console.log("Error", e);
+      alert("서비스에 문제가 발생했습니다. 잠시후에 이용해주세요.");
     }
   };
 
   return (
     <Wrapper>
       <div className="joinform-header">
-        <span>닫기</span>
+        <Button onClick={closeModal}>
+          <FontAwesomeIcon icon={faTimes} />
+        </Button>
       </div>
       <div className="joinform-body">
-        <input
+        <Text className="title">회원가입</Text>
+        <Input
           type="text"
           name="name"
           placeholder="이름"
           value={name}
           onChange={onNameChange}
+          className="joinform-input"
         />
-        <input
+        <Input
           type="email"
           name="email"
           placeholder="이메일"
           value={email}
           onChange={onEmailChange}
+          className="joinform-input"
         />
-        <input
+        <Input
           type="password"
           name="password"
           placeholder="비밀번호"
           value={password}
           onChange={onPasswordChange}
+          className="joinform-input"
         />
-        <input
+        <Input
           type="password"
           placeholder="비밀번호 확인"
           value={passwordChk}
           onChange={onPasswordChkChange}
+          className="joinform-input"
         />
-
-        <Button onClick={join}>확인</Button>
-        <Button onClick={(e) => e.preventDefault()}>취소</Button>
+        <hr />
+        <div className="join-btns">
+          <Button className="join-btn" onClick={join}>
+            확인
+          </Button>
+          <Button className="join-btn" onClick={closeModal}>
+            취소
+          </Button>
+        </div>
       </div>
     </Wrapper>
   );

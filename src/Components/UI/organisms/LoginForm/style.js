@@ -39,6 +39,7 @@ const Wrapper = styled.div`
       background: #000;
       color: #fff;
     }
+
     // sns 로그인 버튼
     .login-sns-btn {
       background: none;

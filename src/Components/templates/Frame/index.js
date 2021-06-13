@@ -64,7 +64,7 @@ const Frame = ({
         )}
         {/* 회원가입 */}
         {modalType === MODAL_TYPE_JOIN && (
-          <JoinForm setModalType={setModalType} />
+          <JoinForm setModalType={setModalType} closeModal={closeModal} />
         )}
       </Modal>
     </Wrapper>
