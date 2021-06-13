@@ -142,6 +142,7 @@ const Frame = ({ match, history }) => {
         closeModal={closeModal}
         modalType={modalType}
         setModalType={setModalType}
+        setUser={setUser}
       />
     </>
   );

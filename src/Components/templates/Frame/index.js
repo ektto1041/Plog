@@ -35,6 +35,7 @@ const Frame = ({
   closeModal,
   modalType,
   setModalType,
+  setUser,
 }) => {
   return (
     <Wrapper>
@@ -55,7 +56,11 @@ const Frame = ({
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {/* 로그인 */}
         {modalType === MODAL_TYPE_LOGIN && (
-          <LoginForm loginWithKakao={loginWithKakao} />
+          <LoginForm
+            loginWithKakao={loginWithKakao}
+            setUser={setUser}
+            closeModal={closeModal}
+          />
         )}
         {/* 회원가입 */}
         {modalType === MODAL_TYPE_JOIN && (
