@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 import { prop, ifProp } from "styled-tools";
 
 const Css = css`
@@ -6,9 +6,9 @@ const Css = css`
   font-weight: bold;
   outline: none;
   cursor: pointer;
-  padding: 10px;
-  
-  ${{...prop("style", {})}}
+  background: none;
+
+  ${{ ...prop("style", {}) }}
 `;
 
 // 일반 버튼
@@ -24,7 +24,4 @@ const RoundButtonStyle = styled.button`
   border-radius: ${ifProp({ shape: "round" }, prop("radius", "0"), 0)}%;
 `;
 
-export {
-  ButtonStyle,
-  RoundButtonStyle,
-};
+export { ButtonStyle, RoundButtonStyle };

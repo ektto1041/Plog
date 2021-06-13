@@ -3,37 +3,15 @@
  */
 
 import React, { useState } from "react";
-import styled from "styled-components";
-import LoginKakaoBtn from "assets/images/login_kakao.png";
-import Button from "Components/UI/atoms/Button";
 import axios from "axios";
 import { STATUS_OK } from "utils/const";
+import Button from "Components/UI/atoms/Button";
+import Input from "Components/UI/atoms/Input";
+import Text from "Components/UI/atoms/Text";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const Wrapper = styled.div`
-  background: #fff;
-  width: 500px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-
-  .loginform-header {
-    height: 50px;
-    border-bottom: 1px solid #eaeaea;
-    text-align: right;
-    padding: 15px;
-    box-sizing: border-box;
-  }
-
-  .loginform-body {
-    .login-kakao-btn {
-      background: none;
-      padding: 0;
-    }
-    img {
-      cursor: pointer;
-    }
-  }
-`;
+import Wrapper from "./style";
 
 const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
   const [email, setEmail] = useState(null);
@@ -62,33 +40,50 @@ const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
       }
     } catch (e) {
       console.log("Error", e);
+      alert("서비스에 문제가 발생했습니다. 잠시후에 이용해주세요.");
     }
   };
 
   return (
     <Wrapper>
       <div className="loginform-header">
-        <span>닫기</span>
+        <Button>
+          <FontAwesomeIcon icon={faTimes} onClick={closeModal} />
+        </Button>
       </div>
       <div className="loginform-body">
-        <input
+        <Text className="title">PLOG</Text>
+        <Input
+          placeholder="이메일"
           type="email"
           name="email"
-          placeholder="이메일"
           value={email}
           onChange={onEmailChange}
+          className="loginform-input"
         />
-        <input
+        <Input
           type="password"
           name="password"
           placeholder="비밀번호"
           value={password}
           onChange={onPasswordChange}
+          className="loginform-input"
         />
-        <Button onClick={login}>로그인</Button>
-        <Button className="login-kakao-btn" onClick={loginWithKakao}>
-          <img src={LoginKakaoBtn} alt="카카오 로그인 버튼" />
+        <Button className="login-btn" onClick={login}>
+          PLOG 로그인
         </Button>
+        <hr />
+        <div className="sns-login-btns">
+          <Button className="login-sns-btn" onClick={loginWithKakao}>
+            구글 로그인
+          </Button>
+          <Button className="login-sns-btn" onClick={loginWithKakao}>
+            카카오 로그인
+          </Button>
+          <Button className="login-sns-btn" onClick={loginWithKakao}>
+            네이버 로그인
+          </Button>
+        </div>
       </div>
     </Wrapper>
   );
