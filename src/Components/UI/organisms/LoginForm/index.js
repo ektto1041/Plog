@@ -25,8 +25,8 @@ const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
   const login = async () => {
     try {
       const response = await axios.post("/auth/login", {
-        email: "apfhd5620@gmail.com",
-        password: "admin",
+        email,
+        password,
       });
 
       const { status, data } = response;

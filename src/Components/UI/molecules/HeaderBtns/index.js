@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   .header-btns {
     background: none;
     border: 1px solid lightgray;
-    border-radius: 10%;
+    border-radius: 10px;
     margin: 0 5px;
     padding: 10px;
 
@@ -24,15 +24,32 @@ const Wrapper = styled.div`
   }
 `;
 
-const HeaderMenus = ({ openLoginModal, openJoinModal }) => {
+const HeaderMenus = ({
+  openLoginModal,
+  openJoinModal,
+  user,
+  isLoggedIn,
+  logout,
+}) => {
   return (
     <Wrapper>
-      <Button className="header-btns" onClick={openLoginModal}>
-        로그인
-      </Button>
-      <Button className="header-btns" onClick={openJoinModal}>
-        회원가입
-      </Button>
+      {!isLoggedIn ? (
+        <>
+          <Button className="header-btns" onClick={openLoginModal}>
+            로그인
+          </Button>
+          <Button className="header-btns" onClick={openJoinModal}>
+            회원가입
+          </Button>
+        </>
+      ) : (
+        <>
+          <Button className="header-btns">{user.email}</Button>
+          <Button className="header-btns" onClick={logout}>
+            로그아웃
+          </Button>
+        </>
+      )}
     </Wrapper>
   );
 };

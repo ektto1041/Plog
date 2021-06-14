@@ -7,7 +7,10 @@
 
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+
 import FrameTemplate from "Components/templates/Frame";
+import Modal from "Components/UI/organisms/Modal";
+import { STATUS_OK } from "utils/const";
 
 const Frame = ({ match, history }) => {
   const [path, setPath] = useState({}); // 현재 url의 parameters
@@ -15,6 +18,7 @@ const Frame = ({ match, history }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalType, setModalType] = useState(null); // Modal Type
   const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 여부
 
   // 웹 실행 시 가장 먼저, 한 번만 실행되는 로직
   // Routing이 달라지면 실행됨
@@ -34,11 +38,29 @@ const Frame = ({ match, history }) => {
       }
     };
 
+    // 접속한 사용자 정보 로딩
+    const getUser = async () => {
+      const response = await axios.get("/auth/user");
+
+      try {
+        const { statusText, data } = response;
+        if (statusText === STATUS_OK) {
+          const { status, user } = data;
+          if (status === STATUS_OK && user) {
+            setUser(user);
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    };
+
     /**
      *  코드는 아래부터 시작
      */
     // 모든 메뉴 가져오기
     getMenus();
+    getUser();
   }, []);
 
   // url이 바뀔 때마다 실행 될 로직
@@ -97,6 +119,12 @@ const Frame = ({ match, history }) => {
     }
   }, [history, match]);
 
+  // 로그인 여부
+  useEffect(() => {
+    if (user) setIsLoggedIn(true);
+    else if (isLoggedIn) setIsLoggedIn(false);
+  }, [user]);
+
   // Modal 열기/닫기 메소드
   const openModal = (type) => {
     setIsModalOpen(true);
@@ -105,6 +133,24 @@ const Frame = ({ match, history }) => {
   const closeModal = () => {
     setIsModalOpen(false);
     setModalType(null);
+  };
+
+  // 로그아웃
+  const logout = () => {
+    const confirmLogout = async () => {
+      try {
+        const response = await axios.post("/auth/logout");
+        if (response.statusText === STATUS_OK) {
+          if (response.data.status === STATUS_OK) {
+            setIsLoggedIn(false);
+            setUser(null);
+          }
+        }
+      } catch (e) {
+        console.log("Logout Error", e);
+      }
+    };
+    Modal.confirm("로그아웃 하시겠어요?", confirmLogout);
   };
 
   // kakao login 메소드
@@ -142,7 +188,10 @@ const Frame = ({ match, history }) => {
         closeModal={closeModal}
         modalType={modalType}
         setModalType={setModalType}
+        user={user}
         setUser={setUser}
+        isLoggedIn={isLoggedIn}
+        logout={logout}
       />
     </>
   );

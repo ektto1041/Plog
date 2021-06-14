@@ -35,12 +35,22 @@ const Frame = ({
   closeModal,
   modalType,
   setModalType,
+  user,
   setUser,
+  isLoggedIn,
+  logout,
 }) => {
   return (
     <Wrapper>
       {/* 헤더 */}
-      <Header openModal={openModal} history={history} menuList={menuList} />
+      <Header
+        openModal={openModal}
+        history={history}
+        menuList={menuList}
+        user={user}
+        isLoggedIn={isLoggedIn}
+        logout={logout}
+      />
 
       {/* 라우터 */}
       <Switch>
