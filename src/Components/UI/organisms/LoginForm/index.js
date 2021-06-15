@@ -2,7 +2,7 @@
  * 로그인 폼
  */
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 
 import { STATUS_OK } from "utils/const";
@@ -17,6 +17,12 @@ import Wrapper from "./style";
 const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
+  const emailInput = useRef(null);
+
+  // 이메일 입력창에 오토 포커스
+  useEffect(() => {
+    emailInput.current.focus();
+  }, []);
 
   const onEmailChange = (e) => setEmail(e.target.value);
   const onPasswordChange = (e) => setPassword(e.target.value);
@@ -45,6 +51,13 @@ const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
     }
   };
 
+  // 비밀번호 입력창에서 엔터 누르면 login 메소드 호출
+  const onEnter = (e) => {
+    if (e.keyCode === 13) {
+      login();
+    }
+  };
+
   return (
     <Wrapper>
       <div className="loginform-header">
@@ -61,6 +74,7 @@ const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
           value={email}
           onChange={onEmailChange}
           className="loginform-input"
+          ref={emailInput}
         />
         <Input
           type="password"
@@ -68,6 +82,7 @@ const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
           placeholder="비밀번호"
           value={password}
           onChange={onPasswordChange}
+          onKeyDown={onEnter}
           className="loginform-input"
         />
         <Button className="login-btn" onClick={login}>

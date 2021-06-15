@@ -2,7 +2,7 @@
  * 회원가입 폼
  */
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
 import { MODAL_TYPE_LOGIN, STATUS_OK } from "utils/const";
@@ -19,6 +19,11 @@ const JoinForm = ({ setModalType, closeModal }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const [passwordChk, setPasswordChk] = useState(null);
+  const emailInput = useRef(null);
+
+  useEffect(() => {
+    if (emailInput) emailInput.current.focus();
+  }, []);
 
   const onNameChange = (e) => setName(e.target.value);
   const onEmailChange = (e) => setEmail(e.target.value);
@@ -59,19 +64,20 @@ const JoinForm = ({ setModalType, closeModal }) => {
       <div className="joinform-body">
         <Text className="title">회원가입</Text>
         <Input
-          type="text"
-          name="name"
-          placeholder="이름"
-          value={name}
-          onChange={onNameChange}
-          className="joinform-input"
-        />
-        <Input
           type="email"
           name="email"
           placeholder="이메일"
           value={email}
           onChange={onEmailChange}
+          className="joinform-input"
+          ref={emailInput}
+        />
+        <Input
+          type="text"
+          name="name"
+          placeholder="이름"
+          value={name}
+          onChange={onNameChange}
           className="joinform-input"
         />
         <Input
