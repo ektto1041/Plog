@@ -22,6 +22,10 @@ const Wrapper = styled.div`
     justify-content: center;
     flex: 1;
 
+    & > div {
+      width: 60%;
+    }
+
     .title {
       margin-bottom: 30px;
       font-size: 28px;
@@ -36,7 +40,6 @@ const Wrapper = styled.div`
 
     // 인풋
     .joinform-input {
-      width: 50%;
     }
 
     .join-btns {
@@ -50,6 +53,7 @@ const Wrapper = styled.div`
       padding: 10px 20px;
       border: 1px solid #000;
       margin: 0 5px;
+      width: 50%;
     }
     .join-btn:hover {
       background: #000;

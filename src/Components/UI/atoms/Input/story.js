@@ -13,7 +13,7 @@ const Template = (args) => <Input {...args} />;
 // Default 버튼
 export const Default = Template.bind({});
 Default.args = {
-  type: "text",
+  type: "email",
 };
 
 Input.propTypes = {};

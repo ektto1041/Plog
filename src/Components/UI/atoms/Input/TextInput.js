@@ -1,6 +1,6 @@
 import React, { forwardRef } from "react";
-import EmailInput from "./EmailInput";
-import TextInput from "./TextInput";
+
+import { Wrapper, InputStyle } from "./style";
 
 /**
  * type
@@ -11,13 +11,13 @@ import TextInput from "./TextInput";
  * => text, password의 경우 빈값 체크
  */
 const Input = forwardRef((props, ref) => {
-  const { type } = props;
-  switch (type) {
-    case "email":
-      return <EmailInput {...props} ref={ref} />;
-    default:
-      return <TextInput {...props} />;
-  }
+  return (
+    <Wrapper>
+      <InputStyle {...props} ref={ref}>
+        {props.children}
+      </InputStyle>
+    </Wrapper>
+  );
 });
 
 export default Input;

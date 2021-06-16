@@ -15,8 +15,8 @@ import Text from "Components/UI/atoms/Text";
 import Wrapper from "./style";
 
 const JoinForm = ({ setModalType, closeModal }) => {
-  const [name, setName] = useState(null);
   const [email, setEmail] = useState(null);
+  const [name, setName] = useState(null);
   const [password, setPassword] = useState(null);
   const [passwordChk, setPasswordChk] = useState(null);
   const emailInput = useRef(null);
@@ -33,19 +33,22 @@ const JoinForm = ({ setModalType, closeModal }) => {
   // 회원가입
   const join = async () => {
     try {
-      const response = await axios.post("/auth/join", {
-        name,
-        email,
-        password,
-      });
+      const isPass = validate();
+      if (isPass) {
+        const response = await axios.post("/auth/join", {
+          name,
+          email,
+          password,
+        });
 
-      const { status, data } = response;
-      if (status === 200) {
-        if (data.status === STATUS_OK) {
-          alert("회원 가입이 완료되었습니다. 로그인 화면으로 이동합니다.");
-          setModalType(MODAL_TYPE_LOGIN);
-        } else {
-          alert(data.message);
+        const { status, data } = response;
+        if (status === 200) {
+          if (data.status === STATUS_OK) {
+            alert("회원 가입이 완료되었습니다. 로그인 화면으로 이동합니다.");
+            setModalType(MODAL_TYPE_LOGIN);
+          } else {
+            alert(data.message);
+          }
         }
       }
     } catch (e) {
@@ -54,6 +57,35 @@ const JoinForm = ({ setModalType, closeModal }) => {
     }
   };
 
+  const validate = () => {
+    /**
+     * 1. 빈 값 체크
+     * => 공통
+     *
+     * 2. 이메일 유효성 체크
+     * 3. 비밀번호 유효성 체크
+     * 4. 비밀번호 일치 여부 체크
+     * => Input에서 처리
+     */
+    const targetList = [
+      { field: email, msg: "이메일을 입력해주세요." },
+      { field: name, msg: "이름을 입력해주세요." },
+      { field: password, msg: "비밀번호를 입력해주세요." },
+      { field: passwordChk, msg: "비밀번호(확인)를 입력해주세요." },
+    ];
+
+    // 빈 값 체크
+    for (let i = 0; i < targetList.length; i++) {
+      const target = targetList[i];
+      if (target.field === null || target.field.trim().length === 0) {
+        alert(target.msg);
+        return false;
+      }
+    }
+    return true;
+  };
+
+  console.log("$$$ email", email);
   return (
     <Wrapper>
       <div className="joinform-header">
