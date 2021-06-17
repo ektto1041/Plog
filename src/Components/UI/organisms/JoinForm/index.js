@@ -29,7 +29,11 @@ const JoinForm = ({ setModalType, closeModal }) => {
     isOk: isPasswordOk,
     onChange: onPasswordChange,
   } = useInput(null, passwordValidator);
-  const [passwordChk, setPasswordChk] = useState(null);
+  const {
+    value: passwordChk,
+    isOk: isPasswordChkOk,
+    onChange: onPasswordChkChange,
+  } = useInput(null, passwordValidator);
   const emailInput = useRef(null);
 
   useEffect(() => {
@@ -37,7 +41,6 @@ const JoinForm = ({ setModalType, closeModal }) => {
   }, []);
 
   const onNameChange = (e) => setName(e.target.value);
-  const onPasswordChkChange = (e) => setPasswordChk(e.target.value);
 
   // 회원가입
   const join = async () => {
@@ -143,6 +146,7 @@ const JoinForm = ({ setModalType, closeModal }) => {
           placeholder="비밀번호 확인 (최소 8자, 하나의 문자, 숫자 및 특수문자 포함)"
           value={passwordChk}
           onChange={onPasswordChkChange}
+          isOk={isPasswordChkOk}
           className="joinform-input"
         />
         <hr />
