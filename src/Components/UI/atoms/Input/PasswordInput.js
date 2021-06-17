@@ -13,7 +13,7 @@ const Input = forwardRef((props, ref) => {
       {!isOk && (
         <div className="input-not-valid">
           {" "}
-          * 올바른 이메일 형식을 입력하세요.
+          * 올바른 패스워드 형식을 입력하세요.
         </div>
       )}
     </Wrapper>

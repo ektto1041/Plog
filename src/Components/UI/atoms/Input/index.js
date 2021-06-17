@@ -1,5 +1,6 @@
 import React, { forwardRef } from "react";
 import EmailInput from "./EmailInput";
+import PasswordInput from "./PasswordInput";
 import TextInput from "./TextInput";
 
 /**
@@ -15,6 +16,8 @@ const Input = forwardRef((props, ref) => {
   switch (type) {
     case "email":
       return <EmailInput {...props} ref={ref} />;
+    case "password":
+      return <PasswordInput {...props} ref={ref} />;
     default:
       return <TextInput {...props} />;
   }

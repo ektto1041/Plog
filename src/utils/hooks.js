@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-export const useEmailInput = (initialValue, onChangeProp, validator) => {
+// Input
+export const useInput = (initialValue, validator) => {
   const [value, setValue] = useState(initialValue);
   const [isOk, setIsOk] = useState(false);
 
@@ -16,10 +17,7 @@ export const useEmailInput = (initialValue, onChangeProp, validator) => {
     }
   }, [value]);
 
-  const onChange = (e) => {
-    setValue(e.target.value);
-    onChangeProp(e);
-  };
+  const onChange = (e) => setValue(e.target.value);
 
   return { value, isOk, onChange };
 };

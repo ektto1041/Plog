@@ -23,6 +23,10 @@ const Css = css`
   width: 100%;
   margin: 5px 0;
 
+  &::placeholder {
+    font-size: 10px;
+  }
+
   ${{ ...prop("style", {}) }}
 `;
 

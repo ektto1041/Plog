@@ -5,9 +5,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 
-import { MODAL_TYPE_LOGIN, STATUS_OK } from "utils/const";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+
+import { MODAL_TYPE_LOGIN, STATUS_OK } from "utils/const";
+import { useInput } from "utils/hooks";
+import { emailValidator, passwordValidator } from "utils/func";
+
 import Button from "Components/UI/atoms/Button";
 import Input from "Components/UI/atoms/Input";
 import Text from "Components/UI/atoms/Text";
@@ -15,9 +19,16 @@ import Text from "Components/UI/atoms/Text";
 import Wrapper from "./style";
 
 const JoinForm = ({ setModalType, closeModal }) => {
-  const [email, setEmail] = useState(null);
+  const { value: email, isOk: isEmailOk, onChange: onEmailChange } = useInput(
+    null,
+    emailValidator
+  );
   const [name, setName] = useState(null);
-  const [password, setPassword] = useState(null);
+  const {
+    value: password,
+    isOk: isPasswordOk,
+    onChange: onPasswordChange,
+  } = useInput(null, passwordValidator);
   const [passwordChk, setPasswordChk] = useState(null);
   const emailInput = useRef(null);
 
@@ -26,8 +37,6 @@ const JoinForm = ({ setModalType, closeModal }) => {
   }, []);
 
   const onNameChange = (e) => setName(e.target.value);
-  const onEmailChange = (e) => setEmail(e.target.value);
-  const onPasswordChange = (e) => setPassword(e.target.value);
   const onPasswordChkChange = (e) => setPasswordChk(e.target.value);
 
   // 회원가입
@@ -82,10 +91,20 @@ const JoinForm = ({ setModalType, closeModal }) => {
         return false;
       }
     }
+
+    // isOk 체크
+    if (!isEmailOk) {
+      alert("올바른 이메일 형식을 입력하세요.");
+      return false;
+    }
+    if (!isPasswordOk) {
+      alert("올바른 패스워드 형식을 입력하세요.");
+      return false;
+    }
+
     return true;
   };
 
-  console.log("$$$ email", email);
   return (
     <Wrapper>
       <div className="joinform-header">
@@ -97,16 +116,15 @@ const JoinForm = ({ setModalType, closeModal }) => {
         <Text className="title">회원가입</Text>
         <Input
           type="email"
-          name="email"
           placeholder="이메일"
           value={email}
           onChange={onEmailChange}
+          isOk={isEmailOk} // 유효성 검사 통과 여부
           className="joinform-input"
           ref={emailInput}
         />
         <Input
           type="text"
-          name="name"
           placeholder="이름"
           value={name}
           onChange={onNameChange}
@@ -114,15 +132,15 @@ const JoinForm = ({ setModalType, closeModal }) => {
         />
         <Input
           type="password"
-          name="password"
-          placeholder="비밀번호"
+          placeholder="비밀번호 (최소 8자, 하나의 문자, 숫자 및 특수문자 포함)"
           value={password}
           onChange={onPasswordChange}
+          isOk={isPasswordOk}
           className="joinform-input"
         />
         <Input
           type="password"
-          placeholder="비밀번호 확인"
+          placeholder="비밀번호 확인 (최소 8자, 하나의 문자, 숫자 및 특수문자 포함)"
           value={passwordChk}
           onChange={onPasswordChkChange}
           className="joinform-input"
