@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -20,13 +20,29 @@ const Wrapper = styled.div`
 `;
 
 const Modal = ({ isOpen, closeModal, children }) => {
+  // 모달을 열면 document에 'keydown' 이벤트 리스너 추가
+  useEffect(() => {
+    document.onkeydown = (e) => {
+      if (e.key === "Escape") closeModal();
+    };
+    return () => {
+      document.onkeydown = null;
+    };
+  }, []);
+
   return (
     <Wrapper
       className={isOpen ? "open-modal" : ""}
       isOpen={isOpen}
       onClick={closeModal}
     >
-      <div onClick={(e) => e.stopPropagation()}>{children}</div>
+      <div
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        {children}
+      </div>
     </Wrapper>
   );
 };
@@ -36,11 +52,17 @@ function close() {
   const modal = document.getElementById("plog-modal");
   if (modal) {
     modal.remove();
+    document.onkeydown = null;
   }
 }
 
 // 확인용 모달
 Modal.confirm = (content = "title", confirmCb, cancelCb) => {
+  // 모달을 열면 document에 'keydown' 이벤트 리스너 추가
+  document.onkeydown = (e) => {
+    if (e.key === "Escape") close();
+  };
+
   const div = document.createElement("div");
   div.classList.add("plog-modal-confirm");
   div.id = "plog-modal";

@@ -19,21 +19,25 @@ import Text from "Components/UI/atoms/Text";
 import Wrapper from "./style";
 
 const JoinForm = ({ setModalType, closeModal }) => {
+  // eamil
   const { value: email, isOk: isEmailOk, onChange: onEmailChange } = useInput(
     null,
     emailValidator
   );
+  // name
   const [name, setName] = useState(null);
+  // password
   const {
     value: password,
     isOk: isPasswordOk,
     onChange: onPasswordChange,
   } = useInput(null, passwordValidator);
-  const {
-    value: passwordChk,
-    isOk: isPasswordChkOk,
-    onChange: onPasswordChkChange,
-  } = useInput(null, passwordValidator);
+  // passwordChk
+  const { value: passwordChk, onChange: onPasswordChkChangeHooks } = useInput(
+    null,
+    passwordValidator
+  );
+  const [isPasswordChkOk, setIsPasswordChkOk] = useState(true);
   const emailInput = useRef(null);
 
   useEffect(() => {
@@ -41,6 +45,20 @@ const JoinForm = ({ setModalType, closeModal }) => {
   }, []);
 
   const onNameChange = (e) => setName(e.target.value);
+  const onPasswordChkChange = (e) => {
+    const { value } = e.target;
+    onPasswordChkChangeHooks(e);
+    if (value && value.length > 0) {
+      if (password === value) {
+        setIsPasswordChkOk(true);
+      } else {
+        setIsPasswordChkOk(false);
+      }
+    } else {
+      // 비밀번호 확인란에 아무 입력도 없는 경우
+      setIsPasswordChkOk(true);
+    }
+  };
 
   // 회원가입
   const join = async () => {
@@ -59,6 +77,7 @@ const JoinForm = ({ setModalType, closeModal }) => {
             alert("회원 가입이 완료되었습니다. 로그인 화면으로 이동합니다.");
             setModalType(MODAL_TYPE_LOGIN);
           } else {
+            // todo 가입 실패 케이스별 처리
             alert(data.message);
           }
         }
@@ -104,6 +123,10 @@ const JoinForm = ({ setModalType, closeModal }) => {
       alert("올바른 패스워드 형식을 입력하세요.");
       return false;
     }
+    if (!isPasswordChkOk) {
+      alert("동일한 비밀번호를 입력하세요.");
+      return false;
+    }
 
     return true;
   };
@@ -123,6 +146,7 @@ const JoinForm = ({ setModalType, closeModal }) => {
           value={email}
           onChange={onEmailChange}
           isOk={isEmailOk} // 유효성 검사 통과 여부
+          validate // 유효성 검사 필요 여부
           className="joinform-input"
           ref={emailInput}
         />
@@ -139,6 +163,7 @@ const JoinForm = ({ setModalType, closeModal }) => {
           value={password}
           onChange={onPasswordChange}
           isOk={isPasswordOk}
+          validate
           className="joinform-input"
         />
         <Input
@@ -147,6 +172,8 @@ const JoinForm = ({ setModalType, closeModal }) => {
           value={passwordChk}
           onChange={onPasswordChkChange}
           isOk={isPasswordChkOk}
+          validate
+          validateMessage={" * 비밀번호가 일치하지 않습니다."}
           className="joinform-input"
         />
         <hr />

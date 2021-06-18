@@ -65,7 +65,6 @@ const Wrapper = styled.div`
 
     // 인풋
     .loginform-input {
-      width: 50%;
     }
   }
 `;
