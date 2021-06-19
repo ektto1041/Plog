@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import { ButtonStyle, RoundButtonStyle } from './style';
+import { ButtonStyle, RoundButtonStyle } from "./style";
 
 const Button = (props) => {
   const { shape } = props;
-  if (shape === 'round') {
+  if (shape === "round") {
     // round 전용 스타일 렌더링
     return <RoundButtonStyle {...props}>{props.children}</RoundButtonStyle>;
   } else {

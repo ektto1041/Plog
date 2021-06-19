@@ -29,7 +29,6 @@ const Wrapper = styled.div`
 const Frame = ({
   history,
   menuList,
-  loginWithKakao,
   isModalOpen,
   openModal,
   closeModal,
@@ -66,11 +65,7 @@ const Frame = ({
       <Modal isOpen={isModalOpen} closeModal={closeModal}>
         {/* 로그인 */}
         {modalType === MODAL_TYPE_LOGIN && (
-          <LoginForm
-            loginWithKakao={loginWithKakao}
-            setUser={setUser}
-            closeModal={closeModal}
-          />
+          <LoginForm setUser={setUser} closeModal={closeModal} />
         )}
         {/* 회원가입 */}
         {modalType === MODAL_TYPE_JOIN && (

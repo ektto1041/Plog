@@ -14,7 +14,14 @@ import Text from "Components/UI/atoms/Text";
 
 import Wrapper from "./style";
 
-const LoginForm = ({ loginWithKakao, setUser, closeModal }) => {
+// 카카오 로그인
+function loginWithKakao() {
+  window.Kakao.Auth.authorize({
+    redirectUri: process.env.REACT_APP_KAKAO_LOGIN_REDIRECT_URL,
+  });
+}
+
+const LoginForm = ({ setUser, closeModal }) => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
   const emailInput = useRef(null);

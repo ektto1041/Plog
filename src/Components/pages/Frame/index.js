@@ -153,36 +153,11 @@ const Frame = ({ match, history }) => {
     Modal.confirm("로그아웃 하시겠어요?", confirmLogout);
   };
 
-  // kakao login 메소드
-  const loginWithKakao = () => {
-    window.Kakao.Auth.login({
-      success: function (authObj) {
-        window.Kakao.API.request({
-          url: "/v2/user/me",
-          success: function (res) {
-            console.log("$$$ 카카오 유저 정보 얻어오기 성공", res);
-            setUser(res);
-          },
-          fail: function (error) {
-            alert(
-              "login success, but failed to request user information: " +
-                JSON.stringify(error)
-            );
-          },
-        });
-      },
-      fail: function (err) {
-        alert(JSON.stringify(err));
-      },
-    });
-  };
-
   return (
     <>
       <FrameTemplate
         history={history}
         menuList={menuList}
-        loginWithKakao={loginWithKakao}
         isModalOpen={isModalOpen}
         openModal={openModal}
         closeModal={closeModal}

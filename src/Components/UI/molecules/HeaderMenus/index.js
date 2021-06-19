@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import Button from 'Components/UI/atoms/Button';
+import React from "react";
+import styled from "styled-components";
+import Button from "Components/UI/atoms/Button";
 
 const Wrapper = styled.div`
   display: flex;
@@ -12,22 +12,24 @@ const Wrapper = styled.div`
   // menu
   .menu-item {
     background: none;
-    color: ${props => props.theme.basic.color.black}
+    color: ${(props) => props.theme.basic.color.black};
   }
 `;
 
-const HeaderMenus = ({
-  menuList,
-  history,
-}) => {
+const HeaderMenus = ({ menuList, history }) => {
   return (
     <Wrapper>
-      {
-        menuList.map(menu => 
-          (<Button className="menu-item" onClick={() => history.push(`/post/${menu.menu_id}`)}>{menu.name}</Button>))
-      }
+      {menuList.map((menu, i) => (
+        <Button
+          className="menu-item"
+          key={`${menu.name}${i}`}
+          onClick={() => history.push(`/post/${menu.menu_id}`)}
+        >
+          {menu.name}
+        </Button>
+      ))}
     </Wrapper>
   );
-}
+};
 
 export default HeaderMenus;
