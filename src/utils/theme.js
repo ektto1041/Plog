@@ -9,9 +9,12 @@ const theme = {
     fontSize: '15px',
     color: {
       ...common,
-      main: "#fe6c6b",
-    }
-  }
+      main: '#fe6c6b',
+      lightGray: 'eee',
+      gray: 'gray',
+      darkGray: '666',
+    },
+  },
 };
 
 export default theme;

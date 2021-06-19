@@ -1,11 +1,11 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import Button from "Components/UI/atoms/Button";
-import HeaderMenus from "Components/UI/molecules/HeaderMenus";
-import HeaderBtns from "Components/UI/molecules/HeaderBtns";
+import Button from 'Components/UI/atoms/Button';
+import HeaderMenus from 'Components/UI/molecules/HeaderMenus';
+import HeaderBtns from 'Components/UI/molecules/HeaderBtns';
 
-import { MODAL_TYPE_LOGIN, MODAL_TYPE_JOIN } from "utils/const";
+import { MODAL_TYPE_LOGIN, MODAL_TYPE_JOIN } from 'utils/const';
 
 const Wrapper = styled.div`
   // container
@@ -38,8 +38,8 @@ const Header = ({ history, openModal, menuList, isLoggedIn, user, logout }) => {
     <Wrapper>
       <Button
         className="header-title"
-        onClick={() => history.push("/")}
-        style={{ fontSize: "26px" }}
+        onClick={() => history.push('/')}
+        style={{ fontSize: '26px' }}
       >
         Plog
       </Button>

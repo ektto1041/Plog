@@ -41,6 +41,7 @@ const FrameContainer = ({
      */
     const getMenuType = async () => {
       const response = await axios.get(`/menuType?menuId=${menuId}`);
+      console.log(123123);
 
       try {
         if(response.statusText === 'OK') {
