@@ -1,14 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
 import Pagination from 'Components/UI/molecules/Pagination';
 import Post from 'Components/UI/organisms/Post';
-
-const Wrapper = styled.div`
-  width: 90%;
-  margin: auto;
-`;
+import Wrapper from './style';
 
 const BoardTemplate = ({ postList, nowPage, dataCount, onClickPagination }) => {
   return (

@@ -25,6 +25,9 @@ const Css = css`
   // bold
 	font-weight: ${ifProp('bold', 'bold', null)};
 
+  // color
+  color: ${prop('color', '#000')};
+
   ${{ ...prop('style', {}) }}
 `;
 
