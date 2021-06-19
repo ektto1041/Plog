@@ -19,11 +19,11 @@ const Wrapper = styled.div`
 const HeaderMenus = ({ menuList, history }) => {
   return (
     <Wrapper>
-      {menuList.map((menu, i) => (
+      {menuList.map((menu) => (
         <Button
           className="menu-item"
-          key={`${menu.name}${i}`}
-          onClick={() => history.push(`/post/${menu.menu_id}`)}
+          key={`${menu.id}`}
+          onClick={() => history.push(`/post/${menu.id}`)}
         >
           {menu.name}
         </Button>

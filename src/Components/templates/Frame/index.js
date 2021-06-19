@@ -39,6 +39,7 @@ const Frame = ({
   isLoggedIn,
   logout,
 }) => {
+  console.log("$$$ list", menuList);
   return (
     <Wrapper>
       {/* 헤더 */}
