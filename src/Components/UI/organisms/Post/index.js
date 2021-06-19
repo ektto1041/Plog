@@ -34,18 +34,17 @@ const Wrapper = styled.div`
 `;
 
 const Post = ({ post }) => {
-  console.log(post);
   return (
     <Wrapper>
       <div className="post-img">
         <Img src={TestImg} width="120px" height="120px" />
       </div>
       <div className="post-content">
-        <Text fontSize="26px">{post.TITLE}</Text>
+        <Text fontSize="26px">{post.title}</Text>
         <P className="post-content-body" color="#666">
-          {post.CONTENT}
+          {post.content}
         </P>
-        <PostInfo date={post.REG_DATE} view={post.VIEW} />
+        <PostInfo date={post.createdAt} view={post.view} />
       </div>
     </Wrapper>
   );
