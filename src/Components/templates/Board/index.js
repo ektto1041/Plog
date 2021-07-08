@@ -13,7 +13,7 @@ const BoardTemplate = ({ postList, nowPage, dataCount, onClickPagination }) => {
       ))}
       <Pagination
         nowPage={nowPage}
-        viewCount={10}
+        viewCount={5}
         buttonCount={5}
         dataCount={dataCount}
         onClickListener={onClickPagination}

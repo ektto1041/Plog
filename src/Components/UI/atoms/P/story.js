@@ -5,7 +5,7 @@ import P from './index';
 
 export default {
   component: P,
-  title: 'P',
+  title: 'Design System/Atoms/P',
   // todo 컬러 팔레트 추가 하기
 };
 

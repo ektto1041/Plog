@@ -1,11 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import Input from "./index";
+import Input from './index';
 
 export default {
   component: Input,
-  title: "Input",
+  title: 'Design System/Atoms/Input',
 };
 
 const Template = (args) => <Input {...args} />;
@@ -13,7 +13,7 @@ const Template = (args) => <Input {...args} />;
 // Default 버튼
 export const Default = Template.bind({});
 Default.args = {
-  type: "email",
+  type: 'email',
 };
 
 Input.propTypes = {};

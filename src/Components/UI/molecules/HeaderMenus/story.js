@@ -5,7 +5,7 @@ import HeaderMenus from './index';
 
 export default {
   component: HeaderMenus,
-  title: 'HeaderMenus',
+  title: 'Design System/Molecules/HeaderMenus',
 };
 
 const Template = (args) => <HeaderMenus {...args} />;

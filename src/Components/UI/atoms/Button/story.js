@@ -11,11 +11,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Button from './index';
+import ButtonComp from './index';
 
-export default {
-  component: Button,
-  title: 'Button',
+const Story = {
+  component: ButtonComp,
+  title: 'Design System/Atoms/Button',
   argTypes: {
     shape: {
       control: {
@@ -26,11 +26,11 @@ export default {
   },
 };
 
-const Template = (args) => <Button {...args}>버튼</Button>;
+const Template = (args) => <ButtonComp {...args}>버튼</ButtonComp>;
 
 // Default 버튼
-export const Default = Template.bind({});
-Default.args = {
+export const Button = Template.bind({});
+Button.args = {
   shape: 'normal',
 };
 
@@ -42,10 +42,12 @@ RoundButton.args = {
 };
 
 // PropTypes를 index.js 파일에 선언하니 스토리북이 나오지 않아서 여기에 설정함
-Button.propTypes = {
+ButtonComp.propTypes = {
   shape: PropTypes.oneOf(['normal', 'round']),
 };
 
-Button.defaultProps = {
+ButtonComp.defaultProps = {
   shape: 'normal',
 };
+
+export default Story;

@@ -5,7 +5,7 @@ import Post from './index';
 
 export default {
   component: Post,
-  title: 'Post',
+  title: 'Design System/Organisms/Post',
 };
 
 const Template = (args) => <Post {...args} />;

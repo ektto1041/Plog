@@ -5,7 +5,7 @@ import PostInfo from './index';
 
 export default {
   component: PostInfo,
-  title: 'PostInfo',
+  title: 'Design System/Molecules/PostInfo',
 };
 
 const Template = (args) => <PostInfo date={args.date} view={args.view} />;

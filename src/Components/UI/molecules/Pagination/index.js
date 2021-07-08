@@ -1,92 +1,216 @@
 import React, { useEffect, useState } from 'react';
-import Button from '../../atoms/Button';
-import styled from 'styled-components';
-
-const PaginationStyle = styled.div`
-  display: flex;
-  justify-content: center;
-`;
+import Button from 'Components/UI/atoms/Button';
+import Wrapper from './style';
 
 const Pagination = ({
-  nowPage,    // 현재 보여주는 페이지
-  viewCount,  // 한 페이지에 표시할 아이템의 수
-  dataCount,  // 총 아이템의 개수
-  buttonCount,  // 한 번에 표시할 Pagination 버튼 개수
-  onClickListener,
+  total = 50, // 총 아이템 개수
+  showCount = 10, // 한 페이지에 보여줄 아이템 개수
 }) => {
-  const [pageCount, setPageCount] = useState(0);  // 총 페이지의 수
-  const [buttonList, setButtonList] = useState([]);
-  const [isBeforeButton, setIsBeforeButton] = useState(false);
-  const [isAfterButton, setIsAfterButton] = useState(false);
+  const [totalPage, setTotalPage] = useState(1); // 총 페이지 수
+  const [buttonList, setButtonList] = useState([]); // 버튼 리스트
+  const [current, setCurrent] = useState(1); // 현재 페이지
 
   useEffect(() => {
-    const newButtonList = [];
-    let newButton = {};
+    // 총 페이지 수 계산
+    let totalPage = Math.floor(total / 10);
+    if (total % 10 > 0) totalPage += 1;
+    setTotalPage(totalPage);
+  }, []);
 
-    const makeButton = (num) => {
-      newButton = {
-        text: num,
-        onClick: () => onClickListener(num),
-      };
+  useEffect(() => {
+    // 버튼 만들기
+    makeButton();
+  }, [current, totalPage]);
 
-      newButtonList.push(newButton);
-    };
+  // 버튼 만들기
+  const makeButton = () => {
+    const buttonList = [];
 
-    let newPageCount = parseInt(dataCount / viewCount);
-    if(viewCount % dataCount !== 0) newPageCount++;
-
-    if(newPageCount > buttonCount) {
-      let range = parseInt(buttonCount / 2);
-
-      if(buttonCount % 2 === 0) {
-        // buttonCount 짝수
-        if(nowPage - range+1 > 1) {
-          // beforeButton 보여줌
-          setIsBeforeButton(true);
-
-          for(let i=nowPage - range+1; i<nowPage; i++) { makeButton(i); }
-        } else {
-          for(let i=1; i<nowPage; i++) { makeButton(i); }
-        }
-      } else {
-        // buttonCount 홀수
-        if(nowPage - range > 1) {
-          // beforeButton 보여줌
-          setIsBeforeButton(true);
-
-          for(let i=nowPage - range; i<nowPage; i++) { makeButton(i); }
-        } else {
-          for(let i=1; i<nowPage; i++) { makeButton(i); }
+    // 1. 총 페이지 수가 5 이하면 첫/마지막 페이지 및 ... 버튼 필요 없다
+    const totalPage = Math.ceil(total / showCount);
+    if (totalPage <= 5) {
+      for (let i = 0; i < totalPage; i++) {
+        buttonList.push(
+          <Button
+            key={i + 1}
+            className={`${
+              i + 1 === current
+                ? 'pagination-btn current-btn'
+                : 'pagination-btn'
+            }`}
+            shape={'round'}
+            radius={20}
+            onClick={movePage}
+            data-page={i + 1}
+          >
+            {i + 1}
+          </Button>,
+        );
+      }
+    } else {
+      // 총 페이지 수가 5 이상
+      const numbers = [-2, -1, 0, 1, 2];
+      for (let i = 0; i < numbers.length; i++) {
+        const num = current + numbers[i];
+        if (num > 0 && totalPage >= num) {
+          buttonList.push(
+            <Button
+              key={num}
+              className={`${
+                num === current
+                  ? 'pagination-btn current-btn'
+                  : 'pagination-btn'
+              }`}
+              shape={'round'}
+              radius={20}
+              onClick={movePage}
+              data-page={num}
+            >
+              {num}
+            </Button>,
+          );
         }
       }
 
-      // 현재 페이지도 버튼으로 저장
-      makeButton(nowPage)
+      // 버튼의 개수가 5개 이하인 경우
+      if (buttonList.length < 5) {
+        const count = 5 - buttonList.length; // 추가해야할 버튼의 개수
+        const firstKey = +buttonList[0].key;
+        const lastKey = +buttonList[buttonList.length - 1].key;
 
-      if(nowPage + range < newPageCount) {
-        // afterButton 보여줌
-        setIsAfterButton(true);
-
-        for(let i=nowPage + 1; i<=nowPage + range; i++) { makeButton(i); }
-      } else {
-        for(let i=nowPage + 1; i<=newPageCount; i++) { makeButton(i); }
+        if (Math.abs(current - firstKey) > Math.abs(current - lastKey)) {
+          for (let i = 1; i <= count; i++) {
+            buttonList.unshift(
+              <Button
+                key={firstKey - i}
+                className="pagination-btn"
+                shape={'round'}
+                radius={20}
+                data-page={firstKey - i}
+              >
+                {firstKey - i}
+              </Button>,
+            );
+          }
+        } else {
+          for (let i = 1; i <= count; i++) {
+            buttonList.push(
+              <Button
+                key={lastKey + i}
+                className="pagination-btn"
+                shape={'round'}
+                radius={20}
+                onClick={movePage}
+                data-page={lastKey + i}
+              >
+                {lastKey + i}
+              </Button>,
+            );
+          }
+        }
       }
-
-      setButtonList(newButtonList);
     }
-  }, [nowPage, viewCount, dataCount, buttonCount, onClickListener]);
 
-  return (
-    <PaginationStyle>
-      {isBeforeButton ? (<Button shape="round" radius="15px" onClick={() => onClickListener(parseInt(buttonList[0].text)-1)} style={{ margin: "0 5px" }} >{"<"}</Button>) : null}
-      {buttonList.map(item => (
-        item.text === nowPage ?
-        <Button key={item.text} shape="round" radius="15px" onClick={item.onClick} style={{ margin: "0 5px"}}>{item.text}</Button> :
-        <Button key={item.text} shape="round" radius="15px" bgColor="white" onClick={item.onClick} style={{ margin: "0 5px", border: "1px solid black"}}>{item.text}</Button>
-      ))}
-      {isAfterButton ? (<Button shape="round" radius="15px" onClick={() => onClickListener(parseInt(buttonList[buttonList.length-1].text)+1)} style={{ margin: "0 5px" }} >{">"}</Button>) : null}
-    </PaginationStyle>
-  );
-}
+    // 첫 페이지, 마지막 페이지 버튼 생성
+    const first = +buttonList[0].key;
+    const last = +buttonList[buttonList.length - 1].key;
+    if (first !== 1) {
+      buttonList.unshift(
+        ...[
+          <Button
+            key="1"
+            className="pagination-btn"
+            shape={'round'}
+            radius={20}
+            onClick={movePage}
+            data-page={1}
+          >
+            1
+          </Button>,
+          <Button
+            key="prev-etc"
+            className="pagination-btn"
+            shape={'round'}
+            radius={20}
+          >
+            ・・・
+          </Button>,
+        ],
+      );
+    }
+    if (last !== totalPage) {
+      buttonList.push(
+        ...[
+          <Button
+            key="next-etc"
+            className="pagination-btn"
+            shape={'round'}
+            radius={20}
+          >
+            ・・・
+          </Button>,
+          <Button
+            key={totalPage}
+            className="pagination-btn"
+            shape={'round'}
+            radius={20}
+            onClick={movePage}
+            data-page={totalPage}
+          >
+            {totalPage}
+          </Button>,
+        ],
+      );
+    }
+
+    // prev, next 버튼 생성
+    const prevBtn = (
+      <Button
+        key="prev-btn"
+        className="pagination-btn"
+        shape={'round'}
+        radius={20}
+        onClick={movePage}
+        data-page="prev"
+        disabled={current === 1}
+      >
+        Prev
+      </Button>
+    );
+    buttonList.unshift(prevBtn);
+
+    const nextBtn = (
+      <Button
+        key="next-btn"
+        className="pagination-btn"
+        shape={'round'}
+        radius={20}
+        onClick={movePage}
+        data-page="next"
+        disabled={current === totalPage}
+      >
+        Next
+      </Button>
+    );
+    buttonList.push(nextBtn);
+
+    setButtonList(buttonList);
+  };
+
+  // 페이지 이동
+  const movePage = (e) => {
+    const page = e.target.dataset.page;
+    console.log(page);
+    if (page === 'prev') {
+      setCurrent(current - 1);
+    } else if (page === 'next') {
+      setCurrent(current + 1);
+    } else {
+      setCurrent(+page);
+    }
+  };
+
+  return <Wrapper>{buttonList.map((btn) => btn)}</Wrapper>;
+};
 
 export default Pagination;

@@ -5,7 +5,7 @@ import Img from './index';
 
 export default {
   component: Img,
-  title: 'Img',
+  title: 'Design System/Atoms/Img',
 };
 
 const Template = (args) => <Img {...args} />;

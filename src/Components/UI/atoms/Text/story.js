@@ -5,7 +5,7 @@ import Text from './index';
 
 export default {
   component: Text,
-  title: 'Text',
+  title: 'Design System/Atoms/Text',
   // todo 컬러 팔레트 추가 하기
 };
 

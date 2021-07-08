@@ -5,15 +5,16 @@ import SliderComponent from './index';
 
 export default {
   component: SliderComponent,
-  title: 'Slider',
+  title: 'Design System/Molecules/Slider',
 };
 
-const Template = args => (
+const Template = (args) => (
   <SliderComponent {...args}>
     <div>Slider 1</div>
     <div>Slider 2</div>
     <div>Slider 3</div>
-  </SliderComponent>);
+  </SliderComponent>
+);
 
 // Default 버튼
 export const Slider = Template.bind({});
@@ -21,9 +22,8 @@ Slider.args = {
   height: '300',
 };
 
-Slider.propTypes = {
+SliderComponent.propTypes = {
   width: PropTypes.number,
   height: PropTypes.number.isRequired,
 };
-Slider.defaultProps = {
-};
+SliderComponent.defaultProps = {};

@@ -19,6 +19,7 @@ const Board = ({ path }) => {
         if (response.statusText === STATUS_OK) {
           const { postList } = response.data;
           setPostList(postList);
+          setDataCount(postList.length);
         }
       } catch (e) {
         console.log('게시글 가져오기 에러', e);
