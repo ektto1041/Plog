@@ -12,10 +12,9 @@ const Pagination = ({
 
   useEffect(() => {
     // 총 페이지 수 계산
-    let totalPage = Math.floor(total / 10);
-    if (total % 10 > 0) totalPage += 1;
+    let totalPage = Math.ceil(total / 10);
     setTotalPage(totalPage);
-  }, []);
+  }, [total]);
 
   useEffect(() => {
     // 버튼 만들기
@@ -75,8 +74,9 @@ const Pagination = ({
       // 버튼의 개수가 5개 이하인 경우
       if (buttonList.length < 5) {
         const count = 5 - buttonList.length; // 추가해야할 버튼의 개수
-        const firstKey = +buttonList[0].key;
-        const lastKey = +buttonList[buttonList.length - 1].key;
+        const firstKey = buttonList.length > 0 ? +buttonList[0].key : 1;
+        const lastKey =
+          buttonList.length > 0 ? +buttonList[buttonList.length - 1].key : 1;
 
         if (Math.abs(current - firstKey) > Math.abs(current - lastKey)) {
           for (let i = 1; i <= count; i++) {
@@ -112,8 +112,9 @@ const Pagination = ({
     }
 
     // 첫 페이지, 마지막 페이지 버튼 생성
-    const first = +buttonList[0].key;
-    const last = +buttonList[buttonList.length - 1].key;
+    const first = buttonList.length > 0 ? +buttonList[0].key : 1;
+    const last =
+      buttonList.length > 0 ? +buttonList[buttonList.length - 1].key : 1;
     if (first !== 1) {
       buttonList.unshift(
         ...[
