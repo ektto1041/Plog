@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import Header from 'Components/UI/organisms/Header';
 import Home from 'Components/pages/Home';
 import Board from 'Components/pages/Board';
+import Write from 'Components/pages/Write';
 import Footer from '../Footer';
 
 import Modal from 'Components/UI/organisms/Modal';
@@ -43,8 +44,8 @@ const Frame = ({
     <Wrapper>
       {/* 헤더 */}
       <Header
-        openModal={openModal}
         history={history}
+        openModal={openModal}
         menuList={menuList}
         user={user}
         isLoggedIn={isLoggedIn}
@@ -56,8 +57,7 @@ const Frame = ({
         <Route exact path="/" component={Home} />
         <Route exact path="/post/:menuId" component={Board} />
         <Route exact path="/post/:menuId/:postId" component={Board} />
-
-        <Route exact path="/board" component={Board} />
+        <Route exact path="/write" component={Write} />
       </Switch>
       <Footer />
 

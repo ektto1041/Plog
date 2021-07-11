@@ -18,9 +18,11 @@ const Wrapper = styled.div`
       font-size: 18px;
     }
   }
+  // 돋보기 버튼
   .board-top-search {
     cursor: pointer;
     margin-left: 5px;
+    font-size: 18px;
   }
   .board-top-search:hover {
     color: skyblue;
