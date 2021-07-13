@@ -3,6 +3,7 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import Wrapper from './style';
 import Button from 'Components/UI/atoms/Button';
+import Input from 'Components/UI/atoms/Input';
 
 const editorConfiguration = {
   toolbar: [
@@ -34,30 +35,48 @@ const editorConfiguration = {
   },
 };
 
-const Write = () => {
-  console.log(Editor.builtinPlugins);
+const Write = ({ writePost }) => {
+  const [title, setTitle] = useState(null);
+  const [content, setContent] = useState(null); // 내용
+  const onCompleteClick = () => {
+    // TODO 유효성 검사
+
+    // 글작성 api 호출
+    writePost({
+      title,
+      content,
+      menuId: 1,
+    });
+  };
+  const onTitleChange = (e) => {
+    setTitle(e.target.value);
+  };
   return (
     <Wrapper>
+      <Input
+        type="text"
+        className="write-title-input"
+        style={{ fontSize: '28px' }}
+        placeholder="제목을 입력하세요"
+        onChange={onTitleChange}
+      />
       <CKEditor
         editor={Editor}
         config={editorConfiguration}
-        data="<p>Hello from CKEditor 5!</p>"
+        data={content}
         onReady={(editor) => {
           // You can store the "editor" and use when it is needed.
           console.log('Editor is ready to use!', editor);
         }}
         onChange={(event, editor) => {
           const data = editor.getData();
-          console.log({ event, editor, data });
-        }}
-        onBlur={(event, editor) => {
-          console.log('Blur.', editor);
-        }}
-        onFocus={(event, editor) => {
-          console.log('Focus.', editor);
+          setContent(data);
         }}
       />
-      <Button>완료</Button>
+      <div className="write-bottom">
+        <Button>취소</Button>
+        <Button onClick={onCompleteClick}>완료</Button>
+      </div>
     </Wrapper>
   );
 };

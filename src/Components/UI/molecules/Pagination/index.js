@@ -5,10 +5,11 @@ import Wrapper from './style';
 const Pagination = ({
   total = 50, // 총 아이템 개수
   showCount = 10, // 한 페이지에 보여줄 아이템 개수
+  current, // 현재 페이지
+  setCurrent,
 }) => {
   const [totalPage, setTotalPage] = useState(1); // 총 페이지 수
   const [buttonList, setButtonList] = useState([]); // 버튼 리스트
-  const [current, setCurrent] = useState(1); // 현재 페이지
 
   useEffect(() => {
     // 총 페이지 수 계산

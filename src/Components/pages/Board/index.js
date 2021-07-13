@@ -6,8 +6,7 @@ import { STATUS_OK } from 'utils/const';
 
 const Board = ({ path }) => {
   const [postList, setPostList] = useState([]);
-  const [nowPage, setNowPage] = useState(1);
-  const [dataCount, setDataCount] = useState(0);
+  const [current, setCurrent] = useState(1); // 현재 페이지
   const history = useHistory();
 
   // 게시글 불러오기
@@ -15,11 +14,10 @@ const Board = ({ path }) => {
     const getPosts = async () => {
       try {
         const menuId = getMenuId();
-        const response = await axios.get(`/posts?id=${menuId}`);
+        const response = await axios.get(`/posts/${menuId}/${current}/10`);
         if (response.statusText === STATUS_OK) {
           const { postList } = response.data;
           setPostList(postList);
-          setDataCount(postList.length);
         }
       } catch (e) {
         console.log('게시글 가져오기 에러', e);
@@ -53,8 +51,8 @@ const Board = ({ path }) => {
     <>
       <BoardTemplate
         postList={postList}
-        nowPage={nowPage}
-        dataCount={dataCount}
+        current={current}
+        setCurrent={setCurrent}
         onClickPagination={onClickPagination}
       />
     </>

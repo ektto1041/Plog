@@ -6,14 +6,19 @@ import Post from 'Components/UI/organisms/Post';
 import BoardTop from 'Components/UI/organisms/BoardTop';
 import Wrapper from './style';
 
-const BoardTemplate = ({ postList }) => {
+const BoardTemplate = ({ current, setCurrent, postList }) => {
   return (
     <Wrapper>
       <BoardTop />
       {postList.map((post) => (
         <Post key={post.id} post={post} />
       ))}
-      <Pagination total={postList.length} showCount={10} />
+      <Pagination
+        total={postList.length}
+        showCount={10}
+        current={current}
+        setCurrent={setCurrent}
+      />
     </Wrapper>
   );
 };
