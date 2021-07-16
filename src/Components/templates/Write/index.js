@@ -1,6 +1,8 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import { useHistory } from 'react-router-dom';
+import Modal from 'Components/UI/organisms/Modal';
 import Wrapper from './style';
 import Button from 'Components/UI/atoms/Button';
 import Input from 'Components/UI/atoms/Input';
@@ -38,6 +40,8 @@ const editorConfiguration = {
 const Write = ({ writePost }) => {
   const [title, setTitle] = useState(null);
   const [content, setContent] = useState(null); // 내용
+  const history = useHistory();
+  // '완료' 버튼 클릭
   const onCompleteClick = () => {
     // TODO 유효성 검사
 
@@ -48,6 +52,15 @@ const Write = ({ writePost }) => {
       menuId: 1,
     });
   };
+
+  // '취소' 버튼 클릭
+  const onCancelClick = () => {
+    Modal.confirm('취소 하시겠습니까?', () => {
+      history.push('/');
+    });
+  };
+
+  // 제목 입력시 onChange 콜백 함수
   const onTitleChange = (e) => {
     setTitle(e.target.value);
   };
@@ -74,7 +87,7 @@ const Write = ({ writePost }) => {
         }}
       />
       <div className="write-bottom">
-        <Button>취소</Button>
+        <Button onClick={onCancelClick}>취소</Button>
         <Button onClick={onCompleteClick}>완료</Button>
       </div>
     </Wrapper>
