@@ -7,6 +7,7 @@ import Wrapper from './style';
 import Button from 'Components/UI/atoms/Button';
 import Input from 'Components/UI/atoms/Input';
 import HashtagInput from 'Components/UI/atoms/HashtagInput';
+import Hashtag from 'Components/UI/atoms/Hashtag';
 import { getMenus } from 'Components/pages/Frame/api';
 
 const editorConfiguration = {
@@ -116,6 +117,9 @@ const Write = ({ writePost }) => {
             
           }
         }} />
+        <div className="write-hashtag-list">
+          <Hashtag>해시태그</Hashtag>
+        </div>
       </div>
       <div className="write-bottom">
         <Button onClick={onCancelClick}>취소</Button>

@@ -19,6 +19,9 @@ const Wrapper = styled.div`
   .write-hashtag input {
     width: 100px;
   }
+  .write-hashtag-list {
+    padding: 10px 5px;
+  }
   .write-bottom {
     margin-top: 20px;
     display: flex;
