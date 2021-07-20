@@ -11,6 +11,7 @@ import axios from "axios";
 import FrameTemplate from "Components/templates/Frame";
 import Modal from "Components/UI/organisms/Modal";
 import { STATUS_OK } from "utils/const";
+import { getMenus } from './api';
 
 const Frame = ({ match, history }) => {
   const [path, setPath] = useState({}); // 현재 url의 parameters
@@ -23,21 +24,19 @@ const Frame = ({ match, history }) => {
   // 웹 실행 시 가장 먼저, 한 번만 실행되는 로직
   // Routing이 달라지면 실행됨
   useEffect(() => {
-    /**
-     *  api Function
-     */
-    const getMenus = async () => {
-      const response = await axios.get(`/menus`);
-
-      try {
-        if (response.statusText === "OK") {
-          setMenuList(response.data);
-        } else throw new Error(`API Error(${response.status})`);
-      } catch (e) {
-        console.error(e);
-      }
-    };
-
+    // const getMenus = async () => {
+    //   try {
+    //     const response = await axios.get(`/menus`);
+    
+    //     if (response.statusText === "OK") {
+    //       setMenuList(response.data);
+    //     } else {
+    //       throw new Error(`API Error(${response.status})`)
+    //     };
+    //   } catch (e) {
+    //     console.error('getMenus error: ', e);
+    //   }
+    // };
     // 접속한 사용자 정보 로딩
     const getUser = async () => {
       const response = await axios.get("/auth/user");
@@ -55,11 +54,14 @@ const Frame = ({ match, history }) => {
       }
     };
 
-    /**
-     *  코드는 아래부터 시작
-     */
-    // 모든 메뉴 가져오기
-    getMenus();
+    const loadMenus = async () => {
+      const menuList = await getMenus();
+      setMenuList(menuList);
+    }
+
+    // 메뉴 정보 가져오기
+    loadMenus();
+    // 유저 정보 가져오기
     getUser();
   }, []);
 

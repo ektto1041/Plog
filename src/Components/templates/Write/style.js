@@ -12,6 +12,13 @@ const Wrapper = styled.div`
     font-size: 28px;
     font-weight: 500;
   }
+  // 해시태그 input
+  .write-hashtag {
+    padding: 10px 0;
+  }
+  .write-hashtag input {
+    width: 100px;
+  }
   .write-bottom {
     margin-top: 20px;
     display: flex;

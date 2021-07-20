@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { useHistory } from 'react-router-dom';
@@ -6,12 +6,13 @@ import Modal from 'Components/UI/organisms/Modal';
 import Wrapper from './style';
 import Button from 'Components/UI/atoms/Button';
 import Input from 'Components/UI/atoms/Input';
+import HashtagInput from 'Components/UI/atoms/HashtagInput';
+import { getMenus } from 'Components/pages/Frame/api';
 
 const editorConfiguration = {
   toolbar: [
     'heading',
     '|',
-    'alignment',
     'bold',
     'italic',
     'link',
@@ -38,9 +39,27 @@ const editorConfiguration = {
 };
 
 const Write = ({ writePost }) => {
-  const [title, setTitle] = useState(null);
+  const [selectComp, setSelectComp] = useState(null); // 메뉴 select
+  const [title, setTitle] = useState(null); // 제목
   const [content, setContent] = useState(null); // 내용
   const history = useHistory();
+  const titleInput = useRef(null); // 제목 input
+
+  // 카테고리(메뉴) 불러오기
+  useEffect(() => {
+    const loadMenus = async () => {
+      const menuList = await getMenus();
+      menuList.unshift({ id: 'init', name: '카테고리 선택', sort: 0, type: 'None' });
+      const optionList = menuList.map((menu) => <option key={menu.id} value={menu.name}>{menu.name}</option>);
+      const selectComp = React.createElement('select', null, optionList);
+      setSelectComp(selectComp);
+    }
+    loadMenus();
+
+    // 제목 input에 포커스 주기
+    titleInput.current.focus();
+  }, []);
+
   // '완료' 버튼 클릭
   const onCompleteClick = () => {
     // TODO 유효성 검사
@@ -66,12 +85,14 @@ const Write = ({ writePost }) => {
   };
   return (
     <Wrapper>
+      {selectComp}
       <Input
         type="text"
         className="write-title-input"
         style={{ fontSize: '28px' }}
         placeholder="제목을 입력하세요"
         onChange={onTitleChange}
+        ref={titleInput}
       />
       <CKEditor
         editor={Editor}
@@ -79,13 +100,23 @@ const Write = ({ writePost }) => {
         data={content}
         onReady={(editor) => {
           // You can store the "editor" and use when it is needed.
-          console.log('Editor is ready to use!', editor);
+          // console.log('Editor is ready to use!', editor);
+          
+          // 현재 에디터에서 사용 가능한 툴바 메뉴 목록
+          // console.log(Array.from( editor.ui.componentFactory.names() ));
         }}
         onChange={(event, editor) => {
           const data = editor.getData();
           setContent(data);
         }}
       />
+      <div className="write-hashtag">
+        <HashtagInput type='text' onKeyDown={(e) => {
+          if (e.keyCode === 13) {
+            
+          }
+        }} />
+      </div>
       <div className="write-bottom">
         <Button onClick={onCancelClick}>취소</Button>
         <Button onClick={onCompleteClick}>완료</Button>

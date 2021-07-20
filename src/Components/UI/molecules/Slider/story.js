@@ -19,7 +19,7 @@ const Template = (args) => (
 // Default 버튼
 export const Slider = Template.bind({});
 Slider.args = {
-  height: '300',
+  height: 300,
 };
 
 SliderComponent.propTypes = {

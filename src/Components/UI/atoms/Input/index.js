@@ -19,7 +19,7 @@ const Input = forwardRef((props, ref) => {
     case "password":
       return <PasswordInput {...props} ref={ref} />;
     default:
-      return <TextInput {...props} />;
+      return <TextInput {...props} ref={ref} />;
   }
 });
 
